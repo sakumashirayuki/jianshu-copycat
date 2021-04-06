@@ -23,5 +23,69 @@ export const Nav = styled.div`
     width: 945px;
     height: 100%;
     margin: 0 auto;
-    background: green;
 `;
+
+export const NavItem = styled.div`
+    line-height: 56px;
+    padding: 0 15px;
+    font-size: 17px;
+    color: #333333;
+    &.active{
+        color: #ea6f5a;
+    }
+    &.left{
+        float: left;
+    }
+    &.right{
+        float: right;
+        color: #969696;
+    }
+`
+
+export const NavSearch = styled.input.attrs({
+    placeholder: '搜索'
+})`
+    width: 240px;
+    height: 38px;
+    margin-top: 9px;
+    margin-left: 15px;
+    padding: 0 40px 0 20px;
+    border: none;
+    border-radius: 19px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #EEEEEE;
+    &::placeholder{
+        color: #999999;
+    }
+`
+
+export const Addition = styled.div`
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 56px;
+`
+
+export const Button = styled.div`
+    &.reg{
+        color: #ea6f5a;
+        width: 80px;
+    }
+    &.writting{
+        color: #ffffff;
+        background-color: #ea6f5a;
+        width: 100px;
+    }
+    float: right;
+    margin-top: 9px;
+    margin-right: 15px;
+    padding: 6px 12px;
+    height: 38px;
+    line-height: 24px;
+    border-radius: 19px;
+    border: 1px solid #ea6f5a;
+    box-sizing: border-box;
+    font-size: 15px;
+    text-align: center;
+`
