@@ -1,16 +1,22 @@
-import React, { useState } from "react"
+import React from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { CSSTransition } from "react-transition-group"
 
 import { HeaderWrapper, Logo, Nav, NavItem, NavSearch, SearchWrapper, Addition, Button } from "./style"
 
+import { actions } from "./store"
+
+
 function Header(){
-    const [focused, setFocused] = useState(false);
+    const headerState = useSelector(state => state.headerReducer);
+
+    const dispatch = useDispatch();
 
     const handleOnFocus = function(){
-        setFocused(true);
+        dispatch(actions.searchFocusAction());
     }
     const handleOnBlur = function(){
-        setFocused(false);
+        dispatch(actions.searchBlurAction());
     }
 
     return (
@@ -23,13 +29,13 @@ function Header(){
             <NavItem className="right"><span className="iconfont">&#xe636;</span></NavItem>
             <SearchWrapper>
                 <CSSTransition
-                    in={focused}
+                    in={headerState.focused}
                     timeout={300}
                     classNames="slide" 
                 >
                     <NavSearch onFocus={handleOnFocus} onBlur={handleOnBlur}/>
                 </CSSTransition>
-                <span className={ focused ? 'focused iconfont' : 'iconfont' }>&#xe637;</span>
+                <span className={ headerState.focused ? 'focused iconfont' : 'iconfont' }>&#xe637;</span>
             </SearchWrapper>
             <Addition>
                 <Button className="writting"><span className="iconfont">&#xe61c;</span> 写文章</Button>
