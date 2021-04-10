@@ -3,7 +3,8 @@ import produce from "immer";
 import { SEARCH_FOCUS, SEARCH_BLUR } from "./action"
 
 const defaultState = {
-    focused: false
+    focused: false,
+    list: []
 }; // convert defaultState to an immutable object
 
 const headerReducer = produce((draft, action)=>{
