@@ -57,7 +57,7 @@ function Header() {
           >
             &#xe637;
           </span>
-          {headerState.focused&&<ListArea />}
+          {(headerState.focused || headerState.mouseIn)&&<ListArea page={headerState.page}/>}
         </SearchWrapper>
         <Addition>
           <Button className="writting">
