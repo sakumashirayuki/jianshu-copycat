@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+
+import ListArea from "./component/ListArea"
 
 import {
   HeaderWrapper,
@@ -9,48 +11,17 @@ import {
   NavItem,
   NavSearch,
   SearchWrapper,
-  SearchInfo,
-  SearchInfoTitle,
-  SearchInfoSwitch,
-  SearchInfoItem,
   Addition,
   Button,
 } from "./style";
 
 import { actions } from "./store";
 
-const getListArea = (show) => {
-  if (show) {
-    return (
-      <SearchInfo>
-        <SearchInfoTitle>
-          热门搜索
-          <SearchInfoSwitch>换一批</SearchInfoSwitch>
-        </SearchInfoTitle>
-        <div>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-          <SearchInfoItem>教育</SearchInfoItem>
-        </div>
-      </SearchInfo>
-    );
-  } else return null;
-};
 
 function Header() {
   const headerState = useSelector((state) => state.headerReducer);
 
   const dispatch = useDispatch();
-
-  useEffect(()=>{
-    dispatch(actions.getList());
-  }, []);
 
   const handleOnFocus = function () {
     dispatch(actions.searchFocusAction());
@@ -58,7 +29,7 @@ function Header() {
   const handleOnBlur = function () {
     dispatch(actions.searchBlurAction());
   };
-
+  
   return (
     <HeaderWrapper>
       <Logo href="/" />
@@ -86,7 +57,7 @@ function Header() {
           >
             &#xe637;
           </span>
-          {getListArea(headerState.focused)}
+          {headerState.focused&&<ListArea />}
         </SearchWrapper>
         <Addition>
           <Button className="writting">

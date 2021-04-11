@@ -1,6 +1,6 @@
 import produce from "immer";
 
-import { SEARCH_FOCUS, SEARCH_BLUR } from "./action"
+import { SEARCH_FOCUS, SEARCH_BLUR, CHANGE_LIST } from "./action"
 
 const defaultState = {
     focused: false,
@@ -14,6 +14,10 @@ const headerReducer = produce((draft, action)=>{
             break;
         case SEARCH_BLUR:
             draft.focused = false;
+            break;
+        case CHANGE_LIST:
+            draft.list = action.data;
+            // console.log("hello");
             break;
     }
 }, defaultState)
