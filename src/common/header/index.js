@@ -53,7 +53,7 @@ function Header() {
             <NavSearch onFocus={handleOnFocus} onBlur={handleOnBlur} />
           </CSSTransition>
           <span
-            className={headerState.focused ? "focused iconfont" : "iconfont"}
+            className={headerState.focused ? "focused iconfont zoom" : "iconfont zoom"}
           >
             &#xe637;
           </span>
