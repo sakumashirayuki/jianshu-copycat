@@ -15,8 +15,7 @@ export const HomeLeft = styled.div`
 
 export const HomeRight = styled.div`
     float: right;
-    width: 240px;
-    background: green;
+    width: 280px;
 `;
 
 export const TopicWrapper = styled.div`
@@ -55,7 +54,7 @@ export const MoreTopic = styled.a`
         font-size: inherit;
     }
 `
-
+// for List 
 export const ListItem = styled.div`
     overflow: hidden;
     padding: 20px 0;
@@ -83,5 +82,18 @@ export const ListInfo = styled.div`
         font-size: 13px;
         line-height: 18px;
         color: #999;
+    }
+`
+// for recommend
+export const BoardContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+`
+
+export const BoardItem = styled.a`
+    img{
+        width: 280px;
+        height: 50px;
     }
 `
