@@ -109,6 +109,7 @@ export const SearchInfo = styled.div`
     
     border-radius: 4px;
     box-shadow: 0 0 8px rgb(0 0 0 / 20%);
+    background: white;
     &:after{
         content: "";
         position: absolute;
