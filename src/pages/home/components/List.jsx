@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 import {
     ListItem,
-    ListInfo
+    ListInfo,
+    LoadMore
 } from "../style";
 
 function List() {
@@ -20,6 +21,9 @@ function List() {
                     </ListInfo>
                 </ListItem>
             )}
+            <LoadMore>
+                阅读更多
+            </LoadMore>
         </div>
     )
 }
