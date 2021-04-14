@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import { actions } from "./store"
 import { 
     HomeWrapper,
     HomeLeft,
@@ -13,6 +15,11 @@ import Download from "./components/Download";
 import Writer from "./components/Writer";
 
 function Home(){
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(actions.getHomeDataAction());
+    }, [])
     return(
         <HomeWrapper>
             <HomeLeft>

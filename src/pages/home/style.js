@@ -92,8 +92,87 @@ export const BoardContainer = styled.div`
 `
 
 export const BoardItem = styled.a`
+    margin-bottom: 5px;
     img{
         width: 280px;
         height: 50px;
+    }
+`
+
+// for writer
+export const WriterInfoTitle = styled.div`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #969696;
+`
+
+export const WriterInfoSwitch = styled.span`
+    float: right;
+    font-size: 13px;
+    .spin{
+        display: block;
+        float: left;
+        font-size: 12px;
+        margin-right: 2px;
+        transition: all .2s ease-in;
+        transform-origin: center center; 
+    }
+`
+
+export const WriterItem = styled.div`
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    img{
+        float: left
+        height: 46px;
+        width: 46px;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+    }
+    .follow{
+        position: absolute;
+        right: 0;
+        top: 5px;
+        font-size: 13px;
+        color: #42c02e;
+        text-decoration: none;
+    }
+    .iconfont{
+        font-size: 10px;
+    }
+`
+export const WriterDes = styled.div`
+    margin-left: 10px;
+    a{
+        font-size: 14px;
+        text-decoration: none;
+        color: black;
+    }
+    p{
+        font-size: 12px;
+        color: #969696;
+        margin-top: 10px;
+    }
+`
+
+export const FindMore = styled.a`
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+    padding: 7px 7px 7px 12px;
+    color: #787878;
+    background-color: #f7f7f7;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 13px;
+    width: 259px;
+    line-height: 19px;
+    text-align: center;
+    .iconfont{
+        font-size: 10px;
     }
 `
