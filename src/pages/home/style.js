@@ -189,3 +189,17 @@ export const FindMore = styled.a`
         font-size: 10px;
     }
 `
+// backToTop
+export const BackTop = styled.div`
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    border: 1px solid #ccc;
+    .iconfont{
+        font-size: 20px;
+    }
+`

@@ -1,15 +1,20 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
     ListItem,
     ListInfo,
     LoadMore
 } from "../style";
+import { actions } from "../store"
 
 function List() {
     const homeState = useSelector((state)=>state.homeReducer);
+    const dispatch  = useDispatch();
+    const getMoreList = ()=>{
+        dispatch(actions.getMoreList());
+    }
     return (
         <div>
             {homeState.articleList.map((item)=>
@@ -21,7 +26,7 @@ function List() {
                     </ListInfo>
                 </ListItem>
             )}
-            <LoadMore>
+            <LoadMore onClick={getMoreList}>
                 阅读更多
             </LoadMore>
         </div>

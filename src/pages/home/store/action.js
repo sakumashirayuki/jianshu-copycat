@@ -1,6 +1,9 @@
 import axios from "axios"
 
-export const GETHOMEDATA = "get_home_data"
+export const GETHOMEDATA = "get_home_data";
+export const ADDHOMEDATA = "add_home_data";
+export const TOGGLETOPSHOW = "toggle_top_show";
+
 
 const setHomeDataAction = (result)=>{
     return {
@@ -12,6 +15,13 @@ const setHomeDataAction = (result)=>{
     }
 }
 
+const addHomeListAction = (list)=>{
+    return {
+        type: ADDHOMEDATA,
+        list
+    }
+}
+
 export const getHomeDataAction = ()=>{
     return (dispatch) =>{
         axios.get('/api/home.json')
@@ -20,4 +30,21 @@ export const getHomeDataAction = ()=>{
             dispatch(setHomeDataAction(result));
         })
     }
+}
+
+export const getMoreList = ()=>{
+    return (dispatch)=>{
+        axios.get('api/homeList.json')
+        .then((res)=>{
+            const result = res.data.data;
+            dispatch(addHomeListAction(result));
+        })
+    }
+}
+
+export const toggleTopShowAction = (flag) => {
+    return {
+        type: TOGGLETOPSHOW,
+        flag
+    };
 }
