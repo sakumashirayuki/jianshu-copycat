@@ -20,7 +20,7 @@ export const HomeRight = styled.div`
 
 export const TopicWrapper = styled.div`
     padding: 0 0 -10px 0;
-    display: flex
+    display: flex;
     flex-wrap: wrap;
     border-bottom: 1px solid #f0f0f0;
 `
@@ -62,7 +62,7 @@ export const ListItem = styled.div`
     img{
         display: block;
         float: right;
-        width: 150;
+        width: 150px;
         height: 100px;
         border-radius: 2px;
         border: 1px solid #f0f0f0;
@@ -71,7 +71,7 @@ export const ListItem = styled.div`
 `
 
 export const ListInfo = styled.div`
-    float: left
+    float: left;
     width: 458px;
     h3{
         line-height: 27px;
@@ -140,7 +140,7 @@ export const WriterItem = styled.div`
     align-items: center;
     margin-bottom: 15px;
     img{
-        float: left
+        float: left;
         height: 46px;
         width: 46px;
         border-radius: 50%;
