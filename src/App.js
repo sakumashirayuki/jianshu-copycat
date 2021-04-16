@@ -8,8 +8,8 @@ import Detail from "./pages/detail/index"
 function App() {
   return (
     <div>
-      <Header />
       <Router>
+        <Header />
         <div>
           <Route path='/' exact>
             <Home />

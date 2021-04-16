@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -18,13 +19,15 @@ function List() {
     return (
         <div>
             {homeState.articleList.map((item)=>
-                <ListItem key={item.id}>
-                    <img src={item.imgUrl} alt=""/>
-                    <ListInfo>
-                        <h3>{item.title}</h3>
-                        <p>{item.abstract}</p>
-                    </ListInfo>
-                </ListItem>
+                <Link key={item.id} to='/detail' style={{textDecoration: 'none'}}>
+                    <ListItem>
+                        <img src={item.imgUrl} alt=""/>
+                        <ListInfo>
+                            <h3>{item.title}</h3>
+                            <p>{item.abstract}</p>
+                        </ListInfo>
+                    </ListItem>
+                </Link>
             )}
             <LoadMore onClick={getMoreList}>
                 阅读更多

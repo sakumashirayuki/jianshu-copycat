@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
@@ -32,7 +33,9 @@ function Header() {
   
   return (
     <HeaderWrapper>
-      <Logo href="/" />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <Nav>
         <NavItem className="left active">
           <span className="iconfont">&#xe625;</span>首页
