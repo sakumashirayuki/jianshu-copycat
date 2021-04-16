@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 
-import { actions } from "./store"
+import { actions } from "./store";
 import {
-    HomeWrapper,
-    HomeLeft,
-    HomeRight,
-    BackTop
+  HomeWrapper,
+  HomeLeft,
+  HomeRight,
+  BackTop,
+  BackDescribe,
 } from "./style";
 
 import Topic from "./components/Topic";
@@ -16,48 +18,77 @@ import Download from "./components/Download";
 import Writer from "./components/Writer";
 
 function Home() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const homeState = useSelector((state) => state.homeReducer);
+  const homeState = useSelector((state) => state.homeReducer);
 
-    useEffect(() => {
-        dispatch(actions.getHomeDataAction());
-        bindEvents();
-        return function cleanup() {
-            window.removeEventListener('scroll', changeScrollTopShow); // remove the listener when clean up the component
-        }
-    }, [])
+  const [mouseInState, setMouseInState] = useState(false);
 
-    const handleScrollTop = () => {
-        window.scrollTo(0, 0);
+  useEffect(() => {
+    dispatch(actions.getHomeDataAction());
+    bindEvents();
+    return function cleanup() {
+      window.removeEventListener("scroll", changeScrollTopShow); // remove the listener when clean up the component
+    };
+  }, []);
+
+  const handleScrollTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  const handleOnMouseEnter = () => {
+    setMouseInState(true);
+  };
+
+  const handleOnMouseLeave = () => {
+    setMouseInState(false);
+  };
+
+  const changeScrollTopShow = () => {
+    if (document.documentElement.scrollTop > 400) {
+      // scroll down 400, show the backtop button
+      dispatch(actions.toggleTopShowAction(true));
+    } else {
+      dispatch(actions.toggleTopShowAction(false));
     }
+  };
 
-    const changeScrollTopShow = () => {
-        if(document.documentElement.scrollTop > 400){ // scroll down 400, show the backtop button
-            dispatch(actions.toggleTopShowAction(true));
-        }else{
-            dispatch(actions.toggleTopShowAction(false));
-        }
-    }
+  const bindEvents = () => {
+    // listening to some events
+    window.addEventListener("scroll", changeScrollTopShow);
+  };
 
-    const bindEvents = () => { // listening to some events
-        window.addEventListener('scroll', changeScrollTopShow);
-    }
-
-    return (
-        <HomeWrapper>
-            <HomeLeft>
-                <Topic />
-                <List />
-            </HomeLeft>
-            <HomeRight>
-                <Recommend />
-                <Download />
-                <Writer />
-            </HomeRight>
-            {homeState.showScroll && <BackTop onClick={handleScrollTop}><span className="iconfont">&#xe633;</span></BackTop>}
-        </HomeWrapper>
-    )
+  return (
+    <HomeWrapper>
+      <HomeLeft>
+        <Topic />
+        <List />
+      </HomeLeft>
+      <HomeRight>
+        <Recommend />
+        <Download />
+        <Writer />
+      </HomeRight>
+      {homeState.showScroll && (
+        <div>
+          <BackTop
+            onClick={handleScrollTop}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          >
+            <span className="iconfont">&#xe633;</span>
+          </BackTop>
+          <CSSTransition
+            in={mouseInState}
+            appear={false}
+            timeout={200}
+            classNames="fade">
+            <BackDescribe>回到顶部</BackDescribe>
+          </CSSTransition>
+        </div>
+      )}
+    </HomeWrapper>
+  );
 }
 
 export default Home;

@@ -49,6 +49,7 @@ export const MoreTopic = styled.a`
     margin-left: 18px;
     color: #999999;
     font-size: 12px;
+    line-height: 40px;
     text-decoration: none;
     .iconfont{
         font-size: inherit;
@@ -201,5 +202,51 @@ export const BackTop = styled.div`
     border: 1px solid #ccc;
     .iconfont{
         font-size: 20px;
+    }
+    &:hover{
+        background-color: hsla(0,0%,71%,.1);
+    }
+`
+
+export const BackDescribe = styled.div`
+    position: fixed;
+    right: 112px;
+    bottom: 50px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    &:after{
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 80px;
+        top: 9px;
+        border: 6px solid transparent;
+        border-left-color: #333;
+        bottom: 99%;
+    }
+    &.fade-enter{
+        transition: all .2s ease-out;
+    }
+    &.fade-enter-active{
+        opacity: 0;
+    }
+    &.fade-enter-done{
+        opacity: 1;
+    }
+    &.fade-exit{
+        transition: all .2s ease-out;
+    }
+    &.fade-exit-active{
+        opacity: 0;        
+    }
+    &.fade-exit-done{
+        opacity: 0;
     }
 `
