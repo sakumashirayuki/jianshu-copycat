@@ -105,6 +105,33 @@ export const BoardContainer = styled.div`
     padding-top: 30px;
 `
 
+// for download
+export const DownloadWrapper = styled.div`
+    overflow: hidden;
+    margin-top: 10px;
+    padding: 10px 22px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    img{
+        float: left;
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+    .title{
+        font-weight: 600;
+        margin-top: 10px;
+        .iconfont{
+            font-size: 10px;
+        }
+    }
+    .description{
+        margin-top: 10px;
+        font-size: 13px;
+        color: #999;
+    }
+`
+
 export const BoardItem = styled.a`
     margin-bottom: 5px;
     img{

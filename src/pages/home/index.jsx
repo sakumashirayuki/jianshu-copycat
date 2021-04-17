@@ -47,7 +47,6 @@ function Home() {
   };
 
   const changeScrollTopShow = () => {
-    console.log(document.documentElement.scrollTop);
     if (document.documentElement.scrollTop > 400) {
       // scroll down 400, show the backtop button
       dispatch(actions.toggleTopShowAction(true));
