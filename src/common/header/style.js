@@ -3,10 +3,13 @@ import logoPic from "../../statics/logo.png";
 
 // now add or delete position: relative not affecting
 export const HeaderWrapper = styled.div`
-    position: relative;
+    position: fixed;
+    width: 100%;
     height: 58px;
     border-bottom: 1px solid #f0f0f0;
     font-weight: 500;
+    background: #fff;
+    opacity: 1;
 `;
 
 export const Logo = styled.div`

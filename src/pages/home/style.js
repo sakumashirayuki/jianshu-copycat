@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
+  padding-top: 58px;
   width: 960px;
   margin: 0 auto;
   overflow: hidden;
@@ -135,7 +136,6 @@ export const StyledDownloadPop = styled.div`
   position: absolute;
   top: -195px;
   left: 48px;
-  z-index: 1;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
