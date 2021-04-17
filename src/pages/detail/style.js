@@ -29,6 +29,11 @@ export const Content = styled.div`
   img{
       width: 730px;
   }
+  p{
+    margin: 25px 0;
+    font-size: 16px;
+    line-height: 30px;
+  }
 `
 
 export const SideWrapper = styled.aside`

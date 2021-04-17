@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.div`
     border-bottom: 1px solid #f0f0f0;
     font-weight: 500;
     background: #fff;
-    opacity: 1;
+    z-index: 1000;
 `;
 
 export const Logo = styled.div`
