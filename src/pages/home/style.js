@@ -235,9 +235,6 @@ export const BackDescribe = styled.div`
         transition: all .2s ease-out;
     }
     &.fade-enter-active{
-        opacity: 0;
-    }
-    &.fade-enter-done{
         opacity: 1;
     }
     &.fade-exit{

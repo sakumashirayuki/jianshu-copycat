@@ -17,6 +17,8 @@ import Recommend from "./components/Recommend";
 import Download from "./components/Download";
 import Writer from "./components/Writer";
 
+import { debounce } from "./utils"
+
 function Home() {
   const dispatch = useDispatch();
 
@@ -45,6 +47,7 @@ function Home() {
   };
 
   const changeScrollTopShow = () => {
+    console.log(document.documentElement.scrollTop);
     if (document.documentElement.scrollTop > 400) {
       // scroll down 400, show the backtop button
       dispatch(actions.toggleTopShowAction(true));
@@ -53,9 +56,11 @@ function Home() {
     }
   };
 
+  const debounceChangeScrollTopShow = debounce(changeScrollTopShow, 100);
+
   const bindEvents = () => {
     // listening to some events
-    window.addEventListener("scroll", changeScrollTopShow);
+    window.addEventListener("scroll", debounceChangeScrollTopShow);
   };
 
   return (
@@ -81,6 +86,7 @@ function Home() {
           <CSSTransition
             in={mouseInState}
             appear={false}
+            unmountOnExit
             timeout={200}
             classNames="fade">
             <BackDescribe>回到顶部</BackDescribe>
