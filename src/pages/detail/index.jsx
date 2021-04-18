@@ -1,5 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actions } from "./store"
 
 import { 
     DetailWrapper,
@@ -11,14 +12,18 @@ import {
 
 function Detail(){
     const detailState = useSelector(state=>state.detailReducer);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(actions.getDetailAction());
+    });
+
     return(
         <DetailWrapper>
             <BlogWrapper>
                 <Header>
                     {detailState.title}
                 </Header>
-                <Content>
-                    {detailState.content}
+                <Content dangerouslySetInnerHTML={{__html: detailState.content}}>
                 </Content>
             </BlogWrapper>
             <SideWrapper>writer information</SideWrapper>
