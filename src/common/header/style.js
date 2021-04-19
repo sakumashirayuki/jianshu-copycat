@@ -37,6 +37,7 @@ export const NavItem = styled.div`
     padding: 0 15px;
     font-size: 17px;
     color: #333333;
+    cursor: pointer;
     &.active{
         color: #ea6f5a;
     }

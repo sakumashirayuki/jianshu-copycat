@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 
-import ListArea from "./component/ListArea"
+import ListArea from "./component/ListArea";
 
 import {
   HeaderWrapper,
@@ -17,10 +17,11 @@ import {
 } from "./style";
 
 import { actions } from "./store";
-
+import { actions as loginActions } from "../../pages/login/store";
 
 function Header() {
   const headerState = useSelector((state) => state.headerReducer);
+  const loginState = useSelector((state) => state.loginReducer);
 
   const dispatch = useDispatch();
 
@@ -30,10 +31,14 @@ function Header() {
   const handleOnBlur = function () {
     dispatch(actions.searchBlurAction());
   };
-  
+
+  const handleOnLogout = function () {
+    dispatch(loginActions.logoutAction());
+  }
+
   return (
     <HeaderWrapper>
-      <Link to='/'>
+      <Link to="/">
         <Logo />
       </Link>
       <Nav>
@@ -43,7 +48,13 @@ function Header() {
         <NavItem className="left">
           <span className="iconfont">&#xe621;</span>下载App
         </NavItem>
-        <NavItem className="right">登录</NavItem>
+        {loginState.login ? (
+          <NavItem className="right" onClick={handleOnLogout}>退出</NavItem>
+        ) : (
+          <Link to="/login">
+            <NavItem className="right">登录</NavItem>
+          </Link>
+        )}
         <NavItem className="right">
           <span className="iconfont">&#xe636;</span>
         </NavItem>
@@ -56,11 +67,15 @@ function Header() {
             <NavSearch onFocus={handleOnFocus} onBlur={handleOnBlur} />
           </CSSTransition>
           <span
-            className={headerState.focused ? "focused iconfont zoom" : "iconfont zoom"}
+            className={
+              headerState.focused ? "focused iconfont zoom" : "iconfont zoom"
+            }
           >
             &#xe637;
           </span>
-          {(headerState.focused || headerState.mouseIn)&&<ListArea page={headerState.page}/>}
+          {(headerState.focused || headerState.mouseIn) && (
+            <ListArea page={headerState.page} />
+          )}
         </SearchWrapper>
         <Addition>
           <Button className="writting">
