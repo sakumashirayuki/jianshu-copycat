@@ -12,7 +12,7 @@ const changeDetailAction = (title, content) => {
 
 export const getDetailAction = () => {
     return (dispatch) => {
-        axios.get('api/detail.json')
+        axios.get('/api/detail.json')
         .then((res)=>{
             const result = res.data.data;
             dispatch(changeDetailAction(result.title, result.content));

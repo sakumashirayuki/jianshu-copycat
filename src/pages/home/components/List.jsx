@@ -55,7 +55,7 @@ function List() {
         <div>
             {homeState.articleList.map((item, index)=>
                 loadState[index]&&
-                <Link key={item.id} to='/detail' style={{textDecoration: 'none'}}>
+                <Link key={item.id} to={`/detail/${item.id}`} style={{textDecoration: 'none'}}>
                     <ListItem>
                         <img src={item.imgUrl} alt=""/>
                         <ListInfo>

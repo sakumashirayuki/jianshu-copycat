@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { actions } from "./store"
 
 import { 
@@ -16,7 +17,8 @@ function Detail(){
     useEffect(()=>{
         dispatch(actions.getDetailAction());
     });
-
+    const { id } = useParams();
+    console.log(id);
     return(
         <DetailWrapper>
             <BlogWrapper>
