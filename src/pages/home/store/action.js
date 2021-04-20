@@ -28,9 +28,11 @@ export const getHomeDataAction = ()=>{
         .then((res)=>{
             const result = res.data.data;
             dispatch(setHomeDataAction(result));
-        })
-    }
-}
+        }).catch(()=>{
+            alert('加载失败，请刷新重试');
+        });
+    };
+};
 
 export const getMoreList = ()=>{
     return (dispatch)=>{
@@ -38,9 +40,11 @@ export const getMoreList = ()=>{
         .then((res)=>{
             const result = res.data.data;
             dispatch(addHomeListAction(result));
-        })
-    }
-}
+        }).catch(()=>{
+            alert('加载失败，请刷新重试');
+        });
+    };
+};
 
 export const toggleTopShowAction = (flag) => {
     return {

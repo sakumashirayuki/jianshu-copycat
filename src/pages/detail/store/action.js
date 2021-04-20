@@ -16,6 +16,8 @@ export const getDetailAction = () => {
         .then((res)=>{
             const result = res.data.data;
             dispatch(changeDetailAction(result.title, result.content));
-        })
-    }
-}
+        }).catch(()=>{
+            alert('加载失败，请刷新重试');
+        });
+    };
+};

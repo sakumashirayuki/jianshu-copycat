@@ -51,7 +51,7 @@ export const getList = () => {
             const data = res.data;
             dispatch(changeListAction(data.data)); // the array
         }).catch(()=>{
-            console.log('error');
+            alert('加载失败，请刷新重试');
         });
     }
 }
