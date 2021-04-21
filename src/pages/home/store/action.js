@@ -3,6 +3,7 @@ import axios from "axios"
 export const GETHOMEDATA = "get_home_data";
 export const ADDHOMEDATA = "add_home_data";
 export const TOGGLETOPSHOW = "toggle_top_show";
+export const CHANGEWRITERPAGE = "change_writer_page";
 
 
 const setHomeDataAction = (result)=>{
@@ -11,7 +12,8 @@ const setHomeDataAction = (result)=>{
         topicList: result.topicList,
         articleList: result.articleList,
         recommendList: result.recommendList,
-        writerList: result.writerList
+        writerList: result.writerList,
+        writerTotalPage: Math.ceil(result.writerList.length / 5)
     }
 }
 
@@ -33,6 +35,12 @@ export const getHomeDataAction = ()=>{
         });
     };
 };
+
+export const changeWriterPageAction = () => {
+    return {
+        type: CHANGEWRITERPAGE
+    };
+}
 
 export const getMoreList = ()=>{
     return (dispatch)=>{

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
 import {
     WriterInfoTitle,
@@ -8,16 +8,18 @@ import {
     WriterDes,
     FindMore
 } from "../style"
+import { actions } from "../store"
 
 function Writer(){
     const spinIcon = useRef(null);
     const homeState = useSelector((state)=>state.homeReducer);
+    const dispatch = useDispatch();
 
     const handleChangePage = function () {
         let originAngle = spinIcon.current.style.transform.replace(/[^0-9]/ig, ''); // remove all that is not number
         originAngle = originAngle==='' ? 0 : parseInt(originAngle);
         spinIcon.current.style.transform = `rotate(${originAngle + 360}deg)`;
-        // dispatch(actions.changePageAction());
+        dispatch(actions.changeWriterPageAction());
     };
 
     return(
@@ -31,7 +33,7 @@ function Writer(){
                     换一批
                 </WriterInfoSwitch>
             </WriterInfoTitle>
-            {homeState.writerList.map((writer)=>
+            {homeState.writerList.slice((homeState.writerPage - 1) * 5, homeState.writerPage * 5).map((writer)=>
                 <WriterItem key={writer.id}>
                     <img src={writer.imgUrl} alt="avatar"/>
                     <WriterDes>

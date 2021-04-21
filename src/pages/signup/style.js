@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginWrapper = styled.div`
+export const SignupWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@ export const LoginWrapper = styled.div`
     background: #eee;
 `;
 
-export const LoginContent = styled.div`
+export const SignupContent = styled.div`
     width: 400px;
     padding: 50px 30px;
     box-sizing: border-box;
@@ -28,7 +28,7 @@ export const Title = styled.div`
     display: flex;
     justify-content: center;
 `
-export const LoginHead = styled.div`
+export const SignupHead = styled.div`
     font-weight: 700;
     padding: 10px;
     box-sizing: border-box;
@@ -56,7 +56,7 @@ export const Input = styled.input`
 `
 
 export const Button = styled.div`
-    background: #3194d0;
+    background: #3db922;;
     margin-top: 20px;
     width: 100%;
     padding: 9px 18px;
@@ -65,7 +65,4 @@ export const Button = styled.div`
     border-radius: 25px;
     text-align: center;
     color: #fff;
-    &:hover{
-        background: #187cb7;
-    }
 `

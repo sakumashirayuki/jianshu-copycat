@@ -1,12 +1,13 @@
 import { original, produce } from "immer";
-import { actions } from ".";
-import { GETHOMEDATA, ADDHOMEDATA, TOGGLETOPSHOW } from "./action";
+import { GETHOMEDATA, ADDHOMEDATA, TOGGLETOPSHOW, CHANGEWRITERPAGE } from "./action";
 
 const defaultState = {
     topicList: [],
     articleList: [],
     recommendList: [],
     writerList: [],
+    writerPage: 1,
+    writerTotalPage: 1, // initial total page is 1
     showScroll: false
 }; 
 
@@ -17,10 +18,15 @@ const homeReducer = produce((draft, action) => {
           draft.articleList = action.articleList;
           draft.recommendList = action.recommendList;
           draft.writerList = action.writerList;
+          draft.writerTotalPage = action.writerTotalPage;
           break;
       case ADDHOMEDATA:
           const preList = original(draft).articleList;
           draft.articleList = preList.concat(action.list);
+          break;
+      case CHANGEWRITERPAGE:
+          const curWriterPage = original(draft).writerPage + 1;
+          draft.writerPage = curWriterPage % draft.writerTotalPage === 0 ? draft.writerTotalPage : curWriterPage % draft.writerTotalPage;
           break;
       case TOGGLETOPSHOW:
           draft.showScroll = action.flag;

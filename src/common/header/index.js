@@ -34,7 +34,7 @@ function Header() {
 
   const handleOnLogout = function () {
     dispatch(loginActions.logoutAction());
-  }
+  };
 
   return (
     <HeaderWrapper>
@@ -49,7 +49,9 @@ function Header() {
           <span className="iconfont">&#xe621;</span>下载App
         </NavItem>
         {loginState.login ? (
-          <NavItem className="right" onClick={handleOnLogout}>退出</NavItem>
+          <NavItem className="right" onClick={handleOnLogout}>
+            退出
+          </NavItem>
         ) : (
           <Link to="/login">
             <NavItem className="right">登录</NavItem>
@@ -83,7 +85,9 @@ function Header() {
               <span className="iconfont">&#xe61c;</span> 写文章
             </Button>
           </Link>
-          <Button className="reg">注册</Button>
+          <Link to="/signup">
+            <Button className="reg">注册</Button>
+          </Link>
         </Addition>
       </Nav>
     </HeaderWrapper>
