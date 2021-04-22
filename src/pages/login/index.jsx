@@ -8,6 +8,8 @@ import {
     Title,
     LoginHead,
     Input,
+    Remember,
+    Forgot,
     Button
  }from "./style"
  import { actions } from "./store";
@@ -34,6 +36,15 @@ function Login(){
                     </Title>
                     <Input type="text" placeholder="手机号或邮箱" className="email_tel" onChange={e=>setAccount(e.target.value)}/>
                     <Input type="password" className="password" onChange={e=>setPassword(e.target.value)}/>
+                    <div style={{ display: "flow-root" }}>
+                        <Remember>
+                            <input type="checkbox" value="true" checked="checked"/>
+                            <span>记住我</span>
+                        </Remember>
+                        <Forgot>
+                            <a href="">登录遇到问题</a>
+                        </Forgot>
+                    </div>
                     <Button onClick={handleSubmit}>登录</Button>
                 </LoginContent>
             </LoginWrapper>

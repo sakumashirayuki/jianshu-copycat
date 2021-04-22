@@ -10,7 +10,7 @@ export const SignupWrapper = styled.div`
 
 export const SignupContent = styled.div`
     width: 400px;
-    padding: 50px 30px;
+    padding: 50px 50px 30px;
     box-sizing: border-box;
     background: #fff;
     border-radius: 4px;
@@ -46,10 +46,13 @@ export const Input = styled.input`
     border: 1px solid #c8c8c8;
     background-color: hsla(0,0%,71%,.1);
     outline: none;
-    &.mobile_tel{
+    &.top{
         border-radius: 4px 4px 0 0;
     }
-    &.password{
+    &.middle{
+        border-top-width: 0;
+    }
+    &.bottom{
         border-radius: 0 0 4px 4px;
         border-top-width: 0;
     }

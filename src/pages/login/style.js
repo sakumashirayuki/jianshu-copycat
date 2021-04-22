@@ -10,7 +10,7 @@ export const LoginWrapper = styled.div`
 
 export const LoginContent = styled.div`
     width: 400px;
-    padding: 50px 30px;
+    padding: 50px 50px 30px;
     box-sizing: border-box;
     background: #fff;
     border-radius: 4px;
@@ -52,6 +52,25 @@ export const Input = styled.input`
     &.password{
         border-radius: 0 0 4px 4px;
         border-top-width: 0;
+    }
+`
+
+export const Remember = styled.div`
+    margin: 15px 0;
+    float: left;
+    line-height: 1.42857;
+`
+
+export const Forgot = styled.div`
+    margin: 15px 0;
+    float: right;
+    line-height: 1.42857;
+    a{
+        text-decoration: none;
+        color: #999;
+        &:hover{
+            color: #333;
+        }
     }
 `
 
