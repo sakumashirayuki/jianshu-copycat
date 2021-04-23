@@ -38,6 +38,17 @@ export const SignupHead = styled.div`
     }
 `
 
+export const InputWrapper = styled.div`
+    position: relative;
+    .iconfont{
+        position: absolute;
+        left: 8.5px;
+        top: 16px;
+        color: #969696;
+        font-size: 18px;
+    }
+`
+
 export const Input = styled.input`
     width: 100%;
     height: 50px;

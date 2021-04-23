@@ -88,3 +88,51 @@ export const Button = styled.div`
         background: #187cb7;
     }
 `
+
+export const MoreOption = styled.div`
+    position: relative;
+    text-align: center;
+    margin-top: 50px;
+    color: #b5b5b5;
+    padding: 0 30px;
+    h6{
+        font-weight: 500;
+        margin-bottom: 10px;
+        &:before{
+            content: "";
+            border-top: 1px solid #b5b5b5;
+            display: block;
+            position: absolute;
+            width: 60px;
+            top: 5px;
+        }
+        &:after{
+            content: "";
+            border-top: 1px solid #b5b5b5;
+            display: block;
+            position: absolute;
+            width: 60px;
+            top: 5px;
+            right: 30px;
+        }
+    }
+`
+
+export const OtherAccount = styled.li`
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 20px;
+    .iconfont{
+        font-size: 28px;
+        &.wechat{
+            color: #00bb29;
+        }
+        &.qq{
+            color: #498ad5;
+        }
+        &.weibo{
+            color: #e05244;
+        }
+    }
+`
