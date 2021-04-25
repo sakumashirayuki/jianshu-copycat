@@ -42,9 +42,11 @@ function Header() {
         <Logo />
       </Link>
       <Nav>
-        <NavItem className="left active">
-          <span className="iconfont">&#xe625;</span>首页
-        </NavItem>
+        <Link to="/">
+          <NavItem className="left active">
+            <span className="iconfont">&#xe625;</span>首页
+          </NavItem>
+        </Link>
         <NavItem className="left">
           <span className="iconfont">&#xe621;</span>下载App
         </NavItem>

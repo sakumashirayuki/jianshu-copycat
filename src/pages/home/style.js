@@ -262,7 +262,7 @@ export const FindMore = styled.a`
 export const BackTop = styled.div`
   position: fixed;
   right: 40px;
-  bottom: 40px;
+  bottom: 60px;
   width: 52px;
   height: 52px;
   line-height: 52px;
@@ -279,7 +279,7 @@ export const BackTop = styled.div`
 export const BackDescribe = styled.div`
   position: fixed;
   right: 112px;
-  bottom: 50px;
+  bottom: 70px;
   width: 80px;
   height: 30px;
   line-height: 30px;

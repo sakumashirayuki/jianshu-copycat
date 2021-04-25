@@ -17,7 +17,7 @@ import Recommend from "./components/Recommend";
 import Download from "./components/Download";
 import Writer from "./components/Writer";
 
-import { debounce } from "./utils"
+import { debounce } from "../../util/utils"
 
 function Home() {
   const dispatch = useDispatch();

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const CHANGE_DETAIL = "change_detail";
+export const TOGGLETOPSHOW = "toggle_top_show";
 
 const changeDetailAction = (title, content) => {
     return {
@@ -21,3 +22,10 @@ export const getDetailAction = () => {
         });
     };
 };
+
+export const toggleTopShowAction = (flag) => {
+    return {
+        type: TOGGLETOPSHOW,
+        flag
+    };
+}
