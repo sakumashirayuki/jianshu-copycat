@@ -79,6 +79,19 @@
             "abstract": "日日无事，事复日日，忙忙。亦茫茫。 滴答······滴答······滴答······滴答······ 风雨过后的，叶片上的雨珠正顺着叶子的纹路向...",
             "imgUrl": "https://picsum.photos/300/200"
         }],
+        "recommendList": [{
+            "id": 1,
+            "imgUrl": "/api/imgs/banner-s-daily.png"
+        },{
+            "id": 2,
+            "imgUrl": "/api/imgs/banner-s-club.png"
+        },{
+            "id": 3,
+            "imgUrl": "/api/imgs/banner-s-7-serial.png"
+        },{
+            "id": 4,
+            "imgUrl": "/api/imgs/banner-s-copyright.png"
+        }],
         "writerList": [{
             "id": 1,
             "name": "阿特otter",

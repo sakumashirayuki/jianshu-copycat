@@ -1,5 +1,5 @@
 import { original, produce } from "immer";
-import { GETHOMEDATA, ADDHOMEDATA, TOGGLETOPSHOW, CHANGEWRITERPAGE, ADDRECOMMENDIMG } from "./action";
+import { GETHOMEDATA, ADDHOMEDATA, TOGGLETOPSHOW, CHANGEWRITERPAGE } from "./action";
 
 const defaultState = {
     topicList: [],
@@ -16,6 +16,7 @@ const homeReducer = produce((draft, action) => {
       case GETHOMEDATA:
           draft.topicList = action.topicList;
           draft.articleList = action.articleList;
+          draft.recommendList = action.recommendList;
           draft.writerList = action.writerList;
           draft.writerTotalPage = action.writerTotalPage;
           break;
@@ -27,8 +28,6 @@ const homeReducer = produce((draft, action) => {
           const curWriterPage = original(draft).writerPage + 1;
           draft.writerPage = curWriterPage % draft.writerTotalPage === 0 ? draft.writerTotalPage : curWriterPage % draft.writerTotalPage;
           break;
-      case ADDRECOMMENDIMG:
-          draft.recommendList = action.recommendList;
       case TOGGLETOPSHOW:
           draft.showScroll = action.flag;
           break;
