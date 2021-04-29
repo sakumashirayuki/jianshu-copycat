@@ -4,23 +4,23 @@ import { useParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { actions } from "./store";
-import { debounce } from "../../util/utils"
+import { debounce } from "../../util/utils";
 
 import {
   DetailWrapper,
   Main,
   BlogWrapper,
   Header,
+  AuthorColumn,
+  AuthorDescribe,
+  TextInformation,
   Content,
   CommentWrapper,
   SideWrapper,
   Footer,
   FooterCompose,
 } from "./style";
-import {
-    BackTop,
-    BackDescribe,
-}from "../home/style";
+import { BackTop, BackDescribe } from "../home/style";
 
 function Detail() {
   const detailState = useSelector((state) => state.detailReducer);
@@ -57,32 +57,70 @@ function Detail() {
   };
 
   useEffect(() => {
+    console.log("??");
     dispatch(actions.getDetailAction());
     bindEvents();
-  });
-
+  },[]);
 
   return (
     <DetailWrapper>
       <Main>
         <BlogWrapper>
           <Header>{detailState.title}</Header>
+          <AuthorColumn>
+            <img src={detailState.authorInfo.imgUrl} alt="author avatar" />
+            <AuthorDescribe>
+              <div className="name">
+                <p>{detailState.authorInfo.name}</p>
+                <a href="/" className="follow">
+                  <span className="iconfont">&#xe60d;</span>
+                  关注
+                </a>
+              </div>
+              <TextInformation>
+                <span className="level iconfont">&#xe6b2;</span>
+                <span className="level">{detailState.authorInfo.level}</span>
+                <p>{detailState.postTime}</p>
+                <span>字数 {detailState.authorInfo.wordAmount}</span>
+                <span>阅读 {detailState.authorInfo.readAmount}</span>
+              </TextInformation>
+            </AuthorDescribe>
+          </AuthorColumn>
           <Content
             dangerouslySetInnerHTML={{ __html: detailState.content }}
           ></Content>
         </BlogWrapper>
         <CommentWrapper>
-            <p>comment~</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
+          <p>comment~</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
+          <p>哈哈哈哈哈</p>
         </CommentWrapper>
       </Main>
-      <SideWrapper>writer information</SideWrapper>
+      <SideWrapper>
+        <AuthorColumn>
+          <img src={detailState.authorInfo.imgUrl} alt="author avatar" />
+          <AuthorDescribe>
+            <div className="name">
+              <p>{detailState.authorInfo.name}</p>
+              <a href="/" className="follow">
+                <span className="iconfont">&#xe60d;</span>
+                关注
+              </a>
+            </div>
+            <TextInformation>
+              <p>
+                总资产{detailState.authorInfo.asset}（约
+                {(detailState.authorInfo.asset / 15).toFixed(2)}元）
+              </p>
+            </TextInformation>
+          </AuthorDescribe>
+        </AuthorColumn>
+      </SideWrapper>
       <Footer>
         <FooterCompose type="text" placeholder="写下你的评论" />
       </Footer>

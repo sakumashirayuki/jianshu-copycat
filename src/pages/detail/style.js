@@ -30,6 +30,59 @@ export const Header = styled.div`
   font-weight: 900;
 `
 
+export const AuthorColumn = styled.div`
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img{
+    border-radius: 50%;
+    border: 1px solid #eee;
+    width: 50px;
+    height: 50px;
+  }
+  .name{
+    font-size: 16px;
+    color: #404040;
+    display: flex;
+  }
+  .follow{
+    font-size: 13px;
+    color: #42c02e;
+    text-decoration: none;
+    margin-left: 8px;
+  }
+  .iconfont {
+    font-size: 10px;
+  }
+`
+
+export const AuthorDescribe = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+`
+
+export const TextInformation = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #969696;
+  & * {
+    margin-right: 10px;
+  }
+  .level{
+    color: #ec7259;
+    text-align: center;
+  }
+  .iconfont{
+    position: relative;
+    bottom: 2px;
+    font-size: 20px;
+  }
+`
+
 export const Content = styled.div`
   color: #2f2f2f;
   img{
@@ -52,6 +105,7 @@ export const CommentWrapper = styled.div`
 export const SideWrapper = styled.aside`
   width: 260px;
   background: #fff;
+  padding: 16px;
 `
 // footer section
 export const Footer = styled.footer`

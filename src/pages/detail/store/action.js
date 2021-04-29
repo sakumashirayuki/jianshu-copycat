@@ -3,11 +3,13 @@ import axios from "axios";
 export const CHANGE_DETAIL = "change_detail";
 export const TOGGLETOPSHOW = "toggle_top_show";
 
-const changeDetailAction = (title, content) => {
+const changeDetailAction = (result) => {
     return {
         type: CHANGE_DETAIL,
-        title,
-        content
+        title: result.title,
+        content: result.content,
+        postTime: result.postTime,
+        authorInfo: result.authorInfo
     };
 }
 
@@ -16,7 +18,8 @@ export const getDetailAction = () => {
         axios.get('/api/detail.json')
         .then((res)=>{
             const result = res.data.data;
-            dispatch(changeDetailAction(result.title, result.content));
+            console.log(result);
+            dispatch(changeDetailAction(result));
         }).catch(()=>{
             alert('加载失败，请刷新重试');
         });
