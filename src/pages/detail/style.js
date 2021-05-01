@@ -106,7 +106,32 @@ export const SideWrapper = styled.aside`
   width: 260px;
   background: #fff;
   padding: 16px;
+  border-radius: 4px;
+  font-size: 16px;
 `
+
+export const BreakLine = styled.div`
+  width: 100%;
+  height: 1px;
+  margin: 16px 0;
+  background-color: #eee;
+  box-sizing: border-box; 
+`
+
+export const WorkItem = styled.div`
+  margin-top: 16px;
+  a{
+    text-decoration: none;
+    color: inherit;
+    line-height: 22px;
+  }
+  p{
+    margin-top: 4px;
+    font-size: 12px;
+    color: #969696;
+  }
+`
+
 // footer section
 export const Footer = styled.footer`
   position: fixed;

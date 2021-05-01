@@ -17,6 +17,8 @@ import {
   Content,
   CommentWrapper,
   SideWrapper,
+  BreakLine,
+  WorkItem,
   Footer,
   FooterCompose,
 } from "./style";
@@ -57,7 +59,6 @@ function Detail() {
   };
 
   useEffect(() => {
-    console.log("??");
     dispatch(actions.getDetailAction());
     bindEvents();
   },[]);
@@ -120,6 +121,13 @@ function Detail() {
             </TextInformation>
           </AuthorDescribe>
         </AuthorColumn>
+        <BreakLine />
+        {detailState.authorInfo.workList.slice(0,3).map((work)=>(
+          <WorkItem key={work.id}>
+            <a href="">{work.title}</a>
+            <p>阅读{work.readTimes}</p>
+          </WorkItem>
+        ))}
       </SideWrapper>
       <Footer>
         <FooterCompose type="text" placeholder="写下你的评论" />

@@ -10,7 +10,29 @@
           "level": 36,
           "wordAmount": 208,
           "readAmount": 6233,
-          "asset": 635
+          "asset": 635,
+          "workList":[
+            {
+              "id": 1,
+              "title": "感悟：人生不必带太多的行李",
+              "readTimes": 387
+            },
+            {
+              "id": 2,
+              "title": "我把春天爱过了",
+              "readTimes": 187
+            },
+            {
+              "id": 3,
+              "title": "春游动物园",
+              "readTimes": 216
+            },
+            {
+              "id": 4,
+              "title": "清明节情思",
+              "readTimes": 129
+            }
+          ]
         }
     }
 }
