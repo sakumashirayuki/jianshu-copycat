@@ -15,7 +15,8 @@ const defaultState = {
       readAmount: 0,
       asset: 0,
       workList: []
-    }
+    },
+    recommendList: []
 }; 
 
 const homeReducer = produce((draft, action) => {
@@ -24,6 +25,7 @@ const homeReducer = produce((draft, action) => {
       draft.title = action.title;
       draft.content = action.content;
       draft.authorInfo = action.authorInfo;
+      draft.recommendList = action.recommendList;
       break;
     case TOGGLETOPSHOW:
       draft.showScroll = action.flag;

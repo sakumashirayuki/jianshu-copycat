@@ -104,10 +104,14 @@ export const CommentWrapper = styled.div`
 // side section
 export const SideWrapper = styled.aside`
   width: 260px;
+`
+
+export const SideSection = styled.div`
   background: #fff;
   padding: 16px;
   border-radius: 4px;
   font-size: 16px;
+  margin-bottom: 10px;
 `
 
 export const BreakLine = styled.div`
@@ -130,6 +134,12 @@ export const WorkItem = styled.div`
     font-size: 12px;
     color: #969696;
   }
+`
+
+export const RecommendHeader = styled.div`
+  border-left: 4px solid #ec7259;
+  padding-left: 6px;
+  margin-bottom: 16px;
 `
 
 // footer section

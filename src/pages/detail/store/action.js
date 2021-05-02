@@ -9,7 +9,8 @@ const changeDetailAction = (result) => {
         title: result.title,
         content: result.content,
         postTime: result.postTime,
-        authorInfo: result.authorInfo
+        authorInfo: result.authorInfo,
+        recommendList: result.recommendList
     };
 }
 
