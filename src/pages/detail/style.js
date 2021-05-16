@@ -94,6 +94,36 @@ export const Content = styled.div`
     line-height: 30px;
   }
 `
+
+export const BottomLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+  color: #969696;
+`
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+export const RoundButton = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #969696;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  &.activate{
+    background-color: #ec7259;
+    color: #fff;
+  }
+`
+
 // main-comment section
 export const CommentWrapper = styled.div`
   width: 730px;

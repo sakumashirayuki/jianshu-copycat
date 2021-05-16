@@ -1,9 +1,10 @@
 import { original, produce } from "immer";
 
-import { CHANGELOGIN, CHANGELOGOUT } from "./action";
+import { CHANGELOGIN, CHANGELOGOUT, CHANGEREMEMBER } from "./action";
 
 const defaultState = {
-    login: false
+    login: false,
+    isRemember: false
 }; 
 
 const homeReducer = produce((draft, action) => {
@@ -13,6 +14,10 @@ const homeReducer = produce((draft, action) => {
           break;
       case CHANGELOGOUT:
           draft.login = false;
+          break;
+      case CHANGEREMEMBER:
+          const prevRemember = original(draft).isRemember;
+          draft.isRemember = !prevRemember;
           break;
   }
 }, defaultState);

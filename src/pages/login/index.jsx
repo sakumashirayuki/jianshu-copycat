@@ -30,14 +30,19 @@ function Login(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(actions.loginAction(account, password));
+        dispatch(actions.loginAction(account, password, loginState.isRemember));
     }
+
+    const handleCheckbox = (e) => {
+        dispatch(actions.changeRememberAction());
+    }
+
     if(!loginState.login){
         return(
             <LoginWrapper>
                 <LoginContent>
                     <Title>
-                        <a href="" style={{textDecoration: 'none'}}><LoginHead className='current'>登录</LoginHead></a>
+                        <a href="/login" style={{textDecoration: 'none'}}><LoginHead className='current'>登录</LoginHead></a>
                         <LoginHead><b>·</b></LoginHead>
                         <Link to="/signup" style={{textDecoration: 'none', color: 'inherit'}}><LoginHead >注册</LoginHead></Link>
                     </Title>
@@ -51,7 +56,7 @@ function Login(){
                     </InputWrapper>
                     <div style={{ display: "flow-root" }}>
                         <Remember>
-                            <input type="checkbox" value=""/>
+                            <input type="checkbox" value="" checked={loginState.isRemember} onChange={e=>handleCheckbox(e)}/>
                             <span>记住我</span>
                         </Remember>
                         <Forgot>

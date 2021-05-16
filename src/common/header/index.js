@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
@@ -35,6 +35,12 @@ function Header() {
   const handleOnLogout = function () {
     dispatch(loginActions.logoutAction());
   };
+
+  useEffect(()=>{
+    if(localStorage.getItem('userData')){ // already logged in
+      dispatch(loginActions.changeLoginAction());
+    }
+  }, []);
 
   return (
     <HeaderWrapper>

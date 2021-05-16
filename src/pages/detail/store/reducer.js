@@ -1,11 +1,13 @@
 import { original, produce } from "immer";
 
-import { CHANGE_DETAIL, TOGGLETOPSHOW } from "./action"
+import { CHANGE_DETAIL, TOGGLETOPSHOW, LIKE, DISLIKE, REMOVEPREFERNCE } from "./action"
 
 const defaultState = {
     title: "",
     content: "",
     postTime: "",
+    likes: 0,
+    preference: "",
     showScroll: false,
     authorInfo: {
       name: "",
@@ -24,11 +26,30 @@ const homeReducer = produce((draft, action) => {
     case CHANGE_DETAIL:
       draft.title = action.title;
       draft.content = action.content;
+      draft.likes = action.likes;
       draft.authorInfo = action.authorInfo;
       draft.recommendList = action.recommendList;
       break;
     case TOGGLETOPSHOW:
       draft.showScroll = action.flag;
+      break;
+    case LIKE:
+      console.log(draft.likes);
+      draft.likes = original(draft).likes + 1;
+      draft.preference = 'like';
+      break;
+    case DISLIKE:
+      draft.likes = original(draft).likes - 1;
+      draft.preference = 'dislike';
+      break;
+    case REMOVEPREFERNCE:
+      const previousPre = original(draft).preference;
+      if(previousPre==='like'){
+        draft.likes = original(draft).likes - 1;  
+      }else if(previousPre==='dislike'){
+        draft.likes = original(draft).likes + 1;
+      }
+      draft.preference = "";
       break;
   }
 }, defaultState);
