@@ -190,3 +190,36 @@ export const Footer = styled.footer`
 export const FooterCompose = styled.textarea`
 
 `
+
+// message popup
+export const PopupContainer = styled.div`
+  position: fixed;
+  top: 5rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  opacity: 1;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgb(0 0 0 / 10%);
+  display: flex;
+  align-items: center;
+  &.alert-enter {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  &.alert-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  &.alert-exit {
+    opacity: 1;
+  }
+  &.alert-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
+`;

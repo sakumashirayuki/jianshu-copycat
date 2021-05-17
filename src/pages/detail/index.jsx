@@ -12,6 +12,8 @@ import {
 import { actions } from "./store";
 import { debounce } from "../../util/utils";
 
+import Popup from "./component/Popup";
+
 import {
     DetailWrapper,
     Main,
@@ -44,6 +46,7 @@ function Detail() {
     let history = useHistory();
 
     const [mouseInState, setMouseInState] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
 
     // scroll to top
     const handleScrollTop = () => {
@@ -82,7 +85,7 @@ function Detail() {
         else if(detailState.preference==='like'){ // remove like
             dispatch(actions.removePreferenceAction());
         }else if(detailState.preference==='dislike'){ // alert
-            alert("You can't both like and dislike!")
+            setShowMessage(true);
         }else{
             history.push('/login');
         }
@@ -95,7 +98,7 @@ function Detail() {
         else if(detailState.preference==='dislike'){ // remove dislike
             dispatch(actions.removePreferenceAction());
         }else if(detailState.preference==='like'){ // alert
-            alert("You can't both like and dislike!")
+            setShowMessage(true);
         }else{
             history.push('/login');
         }
@@ -106,8 +109,25 @@ function Detail() {
         bindEvents();
     }, []);
 
+    useEffect(()=>{
+        if(showMessage){
+            setTimeout(()=>{
+                setShowMessage(false);
+            }, 3000);
+        }
+    }, [showMessage])
+
     return (
         <DetailWrapper>
+            <CSSTransition
+                in={showMessage}
+                timeout={300}
+                classNames="alert"
+                appear={false}
+                unmountOnExit
+            >
+                <Popup content="You can't like while dislike!"/>
+            </CSSTransition>
             <Main>
                 <BlogWrapper>
                     <Header>{detailState.title}</Header>
