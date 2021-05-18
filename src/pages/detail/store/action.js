@@ -13,6 +13,7 @@ const changeDetailAction = (result) => { // load the detail information
         content: result.content,
         postTime: result.postTime,
         likes: result.likes,
+        likedUsers: result.likedUsers,
         authorInfo: result.authorInfo,
         recommendList: result.recommendList
     };

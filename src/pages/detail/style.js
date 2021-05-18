@@ -223,3 +223,88 @@ export const PopupContainer = styled.div`
   }
   
 `;
+
+// can be used for Modal
+// off-screen component
+export const Mask = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const MiddleWindow = styled.div`
+  position: relative;
+  height: 40vh;
+  width: 30vw;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgb(26 26 26 / 10%);
+  color: #404040;
+  font-size: 14px;
+  overflow: auto;
+`
+
+export const CloseBtn = styled.button`
+  position: fixed;
+  margin-left: 510px;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: transparent;
+  background-color: #fff;
+  cursor: pointer;
+  overflow-y: hidden;
+  z-index: 1000;
+`
+export const ModalHeader = styled.h2`
+  position: fixed;
+  background-color: #fff;
+  width: 559px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #eee;
+  overflow-y: hidden;
+  display: inline-block;
+  z-index:999;
+`
+export const ModalContent = styled.div`
+  position: relative;
+  top: 54px;
+  padding: 0 1.5rem;
+  overflow: auto;
+`
+
+export const UserItem = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  .avatar {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-right: 1rem;
+  }
+  .follow {
+    font-size: 13px;
+    color: #42c02e;
+    text-decoration: none;
+  }
+  .iconfont {
+    font-size: 10px;
+  }
+`

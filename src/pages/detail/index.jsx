@@ -13,6 +13,7 @@ import { actions } from "./store";
 import { debounce } from "../../util/utils";
 
 import Popup from "./component/Popup";
+import Modal from "./component/Modal";
 
 import {
     DetailWrapper,
@@ -34,6 +35,7 @@ import {
     RecommendHeader,
     Footer,
     FooterCompose,
+    Mask,
 } from "./style";
 import { BackTop, BackDescribe } from "../home/style";
 
@@ -47,6 +49,7 @@ function Detail() {
 
     const [mouseInState, setMouseInState] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
+    const [showLikedUsers, setShowLikedUsers] = useState(false);
 
     // scroll to top
     const handleScrollTop = () => {
@@ -79,29 +82,39 @@ function Detail() {
 
     // like and dislike
     const handleLike = () => {
-        if(loginState.login&&detailState.preference===''){
+        if (loginState.login && detailState.preference === "") {
             dispatch(actions.likeAction());
-        }
-        else if(detailState.preference==='like'){ // remove like
+        } else if (detailState.preference === "like") {
+            // remove like
             dispatch(actions.removePreferenceAction());
-        }else if(detailState.preference==='dislike'){ // alert
+        } else if (detailState.preference === "dislike") {
+            // alert
             setShowMessage(true);
-        }else{
-            history.push('/login');
+        } else {
+            history.push("/login");
         }
-    }
+    };
 
     const handleDislike = () => {
-        if(loginState.login&&detailState.preference===''){
+        if (loginState.login && detailState.preference === "") {
             dispatch(actions.dislikeAction());
-        }
-        else if(detailState.preference==='dislike'){ // remove dislike
+        } else if (detailState.preference === "dislike") {
+            // remove dislike
             dispatch(actions.removePreferenceAction());
-        }else if(detailState.preference==='like'){ // alert
+        } else if (detailState.preference === "like") {
+            // alert
             setShowMessage(true);
-        }else{
-            history.push('/login');
+        } else {
+            history.push("/login");
         }
+    };
+
+    const handleOnClickLikedUser = () => {
+        setShowLikedUsers(true);
+    }
+
+    const closeModal = () => {
+        setShowLikedUsers(false);
     }
 
     useEffect(() => {
@@ -109,199 +122,245 @@ function Detail() {
         bindEvents();
     }, []);
 
-    useEffect(()=>{
-        if(showMessage){
-            setTimeout(()=>{
+    useEffect(() => {
+        if (showMessage) {
+            setTimeout(() => {
                 setShowMessage(false);
             }, 3000);
         }
-    }, [showMessage])
+    }, [showMessage]);
 
     return (
-        <DetailWrapper>
-            <CSSTransition
-                in={showMessage}
-                timeout={300}
-                classNames="alert"
-                appear={false}
-                unmountOnExit
-            >
-                <Popup content="You can't like while dislike!"/>
-            </CSSTransition>
-            <Main>
-                <BlogWrapper>
-                    <Header>{detailState.title}</Header>
-                    <AuthorColumn>
-                        <img
-                            src={detailState.authorInfo.imgUrl}
-                            alt="author avatar"
-                        />
-                        <AuthorDescribe>
-                            <div className="name">
-                                <p>{detailState.authorInfo.name}</p>
-                                <a href="/" className="follow">
-                                    <span className="iconfont">&#xe60d;</span>
-                                    关注
-                                </a>
-                            </div>
-                            <TextInformation>
-                                <span className="level iconfont">&#xe6b2;</span>
-                                <span className="level">
-                                    {detailState.authorInfo.level}
-                                </span>
-                                <p>{detailState.postTime}</p>
-                                <span>
-                                    字数 {detailState.authorInfo.wordAmount}
-                                </span>
-                                <span>
-                                    阅读 {detailState.authorInfo.readAmount}
-                                </span>
-                            </TextInformation>
-                        </AuthorDescribe>
-                    </AuthorColumn>
-                    <Content
-                        dangerouslySetInnerHTML={{
-                            __html: detailState.content,
-                        }}
-                    ></Content>
-                    <BottomLine>
-                        <Container>
-                            <RoundButton style={{ marginRight: "1rem" }} onClick={()=>{handleLike()}} className={`${detailState.preference==='like'&&'activate'}`}>
-                                <AiFillLike />
-                            </RoundButton>
-                            <div style={{ marginRight: "1rem", cursor: "pointer" }}>{detailState.likes}人点赞<span className="iconfont">&#xe607;</span></div>
-                            <RoundButton onClick={()=>{handleDislike()}} className={`${detailState.preference==='dislike'&&'activate'}`}>
-                                <AiFillDislike />
-                            </RoundButton>
-                        </Container>
-                        <Container>
-                            <a
-                                href=""
-                                style={{
-                                    marginRight: "1rem",
-                                    color: "inherit",
-                                    textDecoration: "none",
-                                }}
-                            >
-                                <AiFillSwitcher />
-                                随笔
-                            </a>
-                            <div>
-                                <RoundButton>
-                                    <AiOutlineEllipsis />
+        <div>
+            {showLikedUsers && <Mask><Modal handleOnClose={closeModal} title={`${detailState.likes}人点赞`} list={detailState.likedUsers}/></Mask>}
+            <DetailWrapper>
+                <CSSTransition
+                    in={showMessage}
+                    timeout={300}
+                    classNames="alert"
+                    appear={false}
+                    unmountOnExit
+                >
+                    <Popup content="You can't like while dislike!" />
+                </CSSTransition>
+                <Main>
+                    <BlogWrapper>
+                        <Header>{detailState.title}</Header>
+                        <AuthorColumn>
+                            <img
+                                src={detailState.authorInfo.imgUrl}
+                                alt="author avatar"
+                            />
+                            <AuthorDescribe>
+                                <div className="name">
+                                    <p>{detailState.authorInfo.name}</p>
+                                    <a href="/" className="follow">
+                                        <span className="iconfont">
+                                            &#xe60d;
+                                        </span>
+                                        关注
+                                    </a>
+                                </div>
+                                <TextInformation>
+                                    <span className="level iconfont">
+                                        &#xe6b2;
+                                    </span>
+                                    <span className="level">
+                                        {detailState.authorInfo.level}
+                                    </span>
+                                    <p>{detailState.postTime}</p>
+                                    <span>
+                                        字数 {detailState.authorInfo.wordAmount}
+                                    </span>
+                                    <span>
+                                        阅读 {detailState.authorInfo.readAmount}
+                                    </span>
+                                </TextInformation>
+                            </AuthorDescribe>
+                        </AuthorColumn>
+                        <Content
+                            dangerouslySetInnerHTML={{
+                                __html: detailState.content,
+                            }}
+                        ></Content>
+                        <BottomLine>
+                            <Container>
+                                <RoundButton
+                                    style={{ marginRight: "1rem" }}
+                                    onClick={() => {
+                                        handleLike();
+                                    }}
+                                    className={`${
+                                        detailState.preference === "like" &&
+                                        "activate"
+                                    }`}
+                                >
+                                    <AiFillLike />
                                 </RoundButton>
-                            </div>
-                        </Container>
-                    </BottomLine>
-                    <BreakLine />
-                    <AuthorColumn style={{backgroundColor: '#fafafa', padding: '12px 16px'}}>
-                        <img
-                            src={detailState.authorInfo.imgUrl}
-                            alt="author avatar"
-                        />
-                        <AuthorDescribe>
-                            <div className="name">
-                                <p>{detailState.authorInfo.name}</p>
-                                <a href="/" className="follow">
-                                    <span className="iconfont">&#xe60d;</span>
-                                    关注
+                                <div
+                                    style={{
+                                        marginRight: "1rem",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={handleOnClickLikedUser}
+                                >
+                                    {detailState.likes}人点赞
+                                    <span className="iconfont">&#xe607;</span>
+                                </div>
+                                <RoundButton
+                                    onClick={() => {
+                                        handleDislike();
+                                    }}
+                                    className={`${
+                                        detailState.preference === "dislike" &&
+                                        "activate"
+                                    }`}
+                                >
+                                    <AiFillDislike />
+                                </RoundButton>
+                            </Container>
+                            <Container>
+                                <a
+                                    href=""
+                                    style={{
+                                        marginRight: "1rem",
+                                        color: "inherit",
+                                        textDecoration: "none",
+                                    }}
+                                >
+                                    <AiFillSwitcher />
+                                    随笔
                                 </a>
-                            </div>
-                            <TextInformation>
-                                <span className="level iconfont">&#xe6b2;</span>
-                                <span className="level">
-                                    {detailState.authorInfo.level}
-                                </span>
-                                <p>{detailState.postTime}</p>
-                                <span>
-                                    字数 {detailState.authorInfo.wordAmount}
-                                </span>
-                                <span>
-                                    阅读 {detailState.authorInfo.readAmount}
-                                </span>
-                            </TextInformation>
-                        </AuthorDescribe>
-                    </AuthorColumn>
-                </BlogWrapper>
-                <CommentWrapper>
-                    <p>comment~</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                    <p>哈哈哈哈哈</p>
-                </CommentWrapper>
-            </Main>
-            <SideWrapper>
-                <SideSection>
-                    <AuthorColumn>
-                        <img
-                            src={detailState.authorInfo.imgUrl}
-                            alt="author avatar"
-                        />
-                        <AuthorDescribe>
-                            <div className="name">
-                                <p>{detailState.authorInfo.name}</p>
-                                <a href="/" className="follow">
-                                    <span className="iconfont">&#xe60d;</span>
-                                    关注
-                                </a>
-                            </div>
-                            <TextInformation>
-                                <p>
-                                    总资产{detailState.authorInfo.asset}（约
-                                    {(
-                                        detailState.authorInfo.asset / 15
-                                    ).toFixed(2)}
-                                    元）
-                                </p>
-                            </TextInformation>
-                        </AuthorDescribe>
-                    </AuthorColumn>
-                    <BreakLine />
-                    {detailState.authorInfo.workList.slice(0, 3).map((work) => (
-                        <WorkItem key={work.id}>
-                            <a href="">{work.title}</a>
-                            <p>阅读{work.readTimes}</p>
-                        </WorkItem>
-                    ))}
-                </SideSection>
-                <SideSection>
-                    <RecommendHeader>推荐阅读</RecommendHeader>
-                    {detailState.recommendList.map((work) => (
-                        <WorkItem key={work.id}>
-                            <a href="">{work.title}</a>
-                            <p>阅读{work.readTimes}</p>
-                        </WorkItem>
-                    ))}
-                </SideSection>
-            </SideWrapper>
-            <Footer>
-                <FooterCompose type="text" placeholder="写下你的评论" />
-            </Footer>
-            {detailState.showScroll && (
-                <div>
-                    <BackTop
-                        onClick={handleScrollTop}
-                        onMouseEnter={handleOnMouseEnter}
-                        onMouseLeave={handleOnMouseLeave}
-                    >
-                        <span className="iconfont">&#xe633;</span>
-                    </BackTop>
-                    <CSSTransition
-                        in={mouseInState}
-                        appear={false}
-                        unmountOnExit
-                        timeout={200}
-                        classNames="fade"
-                    >
-                        <BackDescribe>回到顶部</BackDescribe>
-                    </CSSTransition>
-                </div>
-            )}
-        </DetailWrapper>
+                                <div>
+                                    <RoundButton>
+                                        <AiOutlineEllipsis />
+                                    </RoundButton>
+                                </div>
+                            </Container>
+                        </BottomLine>
+                        <BreakLine />
+                        <AuthorColumn
+                            style={{
+                                backgroundColor: "#fafafa",
+                                padding: "12px 16px",
+                            }}
+                        >
+                            <img
+                                src={detailState.authorInfo.imgUrl}
+                                alt="author avatar"
+                            />
+                            <AuthorDescribe>
+                                <div className="name">
+                                    <p>{detailState.authorInfo.name}</p>
+                                    <a href="/" className="follow">
+                                        <span className="iconfont">
+                                            &#xe60d;
+                                        </span>
+                                        关注
+                                    </a>
+                                </div>
+                                <TextInformation>
+                                    <span className="level iconfont">
+                                        &#xe6b2;
+                                    </span>
+                                    <span className="level">
+                                        {detailState.authorInfo.level}
+                                    </span>
+                                    <p>{detailState.postTime}</p>
+                                    <span>
+                                        字数 {detailState.authorInfo.wordAmount}
+                                    </span>
+                                    <span>
+                                        阅读 {detailState.authorInfo.readAmount}
+                                    </span>
+                                </TextInformation>
+                            </AuthorDescribe>
+                        </AuthorColumn>
+                    </BlogWrapper>
+                    <CommentWrapper>
+                        <p>comment~</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                        <p>哈哈哈哈哈</p>
+                    </CommentWrapper>
+                </Main>
+                <SideWrapper>
+                    <SideSection>
+                        <AuthorColumn>
+                            <img
+                                src={detailState.authorInfo.imgUrl}
+                                alt="author avatar"
+                            />
+                            <AuthorDescribe>
+                                <div className="name">
+                                    <p>{detailState.authorInfo.name}</p>
+                                    <a href="/" className="follow">
+                                        <span className="iconfont">
+                                            &#xe60d;
+                                        </span>
+                                        关注
+                                    </a>
+                                </div>
+                                <TextInformation>
+                                    <p>
+                                        总资产{detailState.authorInfo.asset}（约
+                                        {(
+                                            detailState.authorInfo.asset / 15
+                                        ).toFixed(2)}
+                                        元）
+                                    </p>
+                                </TextInformation>
+                            </AuthorDescribe>
+                        </AuthorColumn>
+                        <BreakLine />
+                        {detailState.authorInfo.workList
+                            .slice(0, 3)
+                            .map((work) => (
+                                <WorkItem key={work.id}>
+                                    <a href="">{work.title}</a>
+                                    <p>阅读{work.readTimes}</p>
+                                </WorkItem>
+                            ))}
+                    </SideSection>
+                    <SideSection>
+                        <RecommendHeader>推荐阅读</RecommendHeader>
+                        {detailState.recommendList.map((work) => (
+                            <WorkItem key={work.id}>
+                                <a href="">{work.title}</a>
+                                <p>阅读{work.readTimes}</p>
+                            </WorkItem>
+                        ))}
+                    </SideSection>
+                </SideWrapper>
+                <Footer>
+                    <FooterCompose type="text" placeholder="写下你的评论" />
+                </Footer>
+                {detailState.showScroll && (
+                    <div>
+                        <BackTop
+                            onClick={handleScrollTop}
+                            onMouseEnter={handleOnMouseEnter}
+                            onMouseLeave={handleOnMouseLeave}
+                        >
+                            <span className="iconfont">&#xe633;</span>
+                        </BackTop>
+                        <CSSTransition
+                            in={mouseInState}
+                            appear={false}
+                            unmountOnExit
+                            timeout={200}
+                            classNames="fade"
+                        >
+                            <BackDescribe>回到顶部</BackDescribe>
+                        </CSSTransition>
+                    </div>
+                )}
+            </DetailWrapper>
+        </div>
     );
 }
 
