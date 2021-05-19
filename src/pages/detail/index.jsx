@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Menu, Dropdown, Button, Space } from 'antd';
+import 'antd/dist/antd.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
@@ -50,6 +52,32 @@ function Detail() {
     const [mouseInState, setMouseInState] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [showLikedUsers, setShowLikedUsers] = useState(false);
+
+    const { SubMenu } = Menu;
+    
+    const menu = (
+        <Menu>
+          <SubMenu title="分享文章">
+                <Menu.Item>分享到微信</Menu.Item>
+                <Menu.Item>分享到微博</Menu.Item>
+            </SubMenu>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="/">
+              收入专题
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="/">
+              收藏文章
+            </a>
+          </Menu.Item>
+          <Menu.Item>
+            <a target="_blank" rel="noopener noreferrer" href="/">
+              举报文章
+            </a>
+          </Menu.Item>
+        </Menu>
+      );
 
     // scroll to top
     const handleScrollTop = () => {
@@ -232,9 +260,12 @@ function Detail() {
                                     随笔
                                 </a>
                                 <div>
+                                <Dropdown overlay={menu} placement="topCenter">
+                                    {/* <Button>topCenter</Button> */}
                                     <RoundButton>
                                         <AiOutlineEllipsis />
                                     </RoundButton>
+                                </Dropdown>
                                 </div>
                             </Container>
                         </BottomLine>
