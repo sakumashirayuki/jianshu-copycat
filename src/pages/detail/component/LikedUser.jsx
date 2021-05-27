@@ -9,7 +9,7 @@ import {
     UserItem,
 } from "../style";
 
-function Modal(props) {
+function LikedUser(props) {
     return (
         <MiddleWindow
             tabIndex="-1"
@@ -17,7 +17,7 @@ function Modal(props) {
             aria-labelledby="dialog1Title"
             aria-describedby="dialog1Desc"
         >
-            <CloseBtn onClick={props.handleOnClose}>
+            <CloseBtn onClick={()=>props.handleOnClose("likedUser")}>
                 <AiOutlineClose />
             </CloseBtn>
             <ModalHeader id="dialog1Title">{props.title}</ModalHeader>
@@ -41,4 +41,4 @@ function Modal(props) {
     );
 }
 
-export default Modal;
+export default LikedUser;

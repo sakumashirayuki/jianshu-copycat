@@ -177,9 +177,11 @@ export const Button = styled.div`
         background-color: #ea6f5a;
         width: 100px;
     }
-    float: right;
-    margin-top: 9px;
-    margin-right: 15px;
+    &.right{
+        float: right;
+        margin-top: 9px;
+        margin-right: 15px;
+    }
     padding: 6px 12px;
     height: 38px;
     line-height: 24px;
@@ -188,4 +190,5 @@ export const Button = styled.div`
     box-sizing: border-box;
     font-size: 15px;
     text-align: center;
+    cursor: pointer;
 `

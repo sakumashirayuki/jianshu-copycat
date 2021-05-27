@@ -8,6 +8,7 @@ const defaultState = {
     postTime: "",
     likes: 0,
     likedUsers: [],
+    sponse: 0,
     preference: "",
     showScroll: false,
     authorInfo: {
@@ -29,6 +30,7 @@ const homeReducer = produce((draft, action) => {
       draft.content = action.content;
       draft.likes = action.likes;
       draft.likedUsers = action.likedUsers;
+      draft.sponse = action.sponse;
       draft.authorInfo = action.authorInfo;
       draft.recommendList = action.recommendList;
       break;

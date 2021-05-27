@@ -89,12 +89,12 @@ function Header() {
         </SearchWrapper>
         <Addition>
           <Link to="/write">
-            <Button className="writting">
+            <Button className="writting right">
               <span className="iconfont">&#xe61c;</span> 写文章
             </Button>
           </Link>
           <Link to="/signup">
-            <Button className="reg">注册</Button>
+            <Button className="reg right">注册</Button>
           </Link>
         </Addition>
       </Nav>

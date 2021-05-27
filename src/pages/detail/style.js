@@ -86,7 +86,7 @@ export const TextInformation = styled.div`
 export const Content = styled.div`
   color: #2f2f2f;
   img{
-      width: 730px;
+      width: 100%;
   }
   p{
     margin: 25px 0;
@@ -122,6 +122,18 @@ export const RoundButton = styled.div`
     background-color: #ec7259;
     color: #fff;
   }
+`
+
+export const SponseWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  *{
+    margin-bottom: 1rem;
+  }
+  margin-bottom: 1rem;
+  text-align: center;
 `
 
 // main-comment section

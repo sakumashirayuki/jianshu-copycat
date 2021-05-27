@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Dropdown, Button, Space } from 'antd';
+import { Menu, Dropdown } from 'antd';
 import 'antd/dist/antd.css';
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -15,7 +15,8 @@ import { actions } from "./store";
 import { debounce } from "../../util/utils";
 
 import Popup from "./component/Popup";
-import Modal from "./component/Modal";
+import LikedUser from "./component/LikedUser";
+import SponseDialog from "./component/SponseDialog";
 
 import {
     DetailWrapper,
@@ -27,6 +28,7 @@ import {
     TextInformation,
     Content,
     BottomLine,
+    SponseWrapper,
     Container,
     RoundButton,
     CommentWrapper,
@@ -40,6 +42,7 @@ import {
     Mask,
 } from "./style";
 import { BackTop, BackDescribe } from "../home/style";
+import { Button } from "../../common/header/style";
 
 function Detail() {
     const detailState = useSelector((state) => state.detailReducer);
@@ -52,6 +55,7 @@ function Detail() {
     const [mouseInState, setMouseInState] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [showLikedUsers, setShowLikedUsers] = useState(false);
+    const [showSponse, setShowSponse] = useState(false);
 
     const { SubMenu } = Menu;
     
@@ -141,8 +145,21 @@ function Detail() {
         setShowLikedUsers(true);
     }
 
-    const closeModal = () => {
-        setShowLikedUsers(false);
+    const handleOnClickSponse = () => {
+        setShowSponse(true);
+    }
+
+    const closeModal = (name) => {
+        switch (name) {
+            case "likedUser":
+                setShowLikedUsers(false);        
+                break;
+            case "sponseDialog":
+                setShowSponse(false);
+                break;
+            default:
+                break;
+        }
     }
 
     useEffect(() => {
@@ -160,7 +177,8 @@ function Detail() {
 
     return (
         <div>
-            {showLikedUsers && <Mask><Modal handleOnClose={closeModal} title={`${detailState.likes}人点赞`} list={detailState.likedUsers}/></Mask>}
+            {showLikedUsers && <Mask><LikedUser handleOnClose={closeModal} title={`${detailState.likes}人点赞`} list={detailState.likedUsers}/></Mask>}
+            {showSponse && <Mask><SponseDialog handleOnClose={closeModal}/></Mask>}
             <DetailWrapper>
                 <CSSTransition
                     in={showMessage}
@@ -249,7 +267,7 @@ function Detail() {
                             </Container>
                             <Container>
                                 <a
-                                    href=""
+                                    href="/"
                                     style={{
                                         marginRight: "1rem",
                                         color: "inherit",
@@ -270,6 +288,11 @@ function Detail() {
                             </Container>
                         </BottomLine>
                         <BreakLine />
+                        <SponseWrapper>
+                            <p>“小礼物走一走，来简书关注我”</p>
+                            <Button className="writting" onClick={handleOnClickSponse}>赞赏支持</Button>
+                            {detailState.sponse > 0 ? <p>共{detailState.sponse}人赞赏</p> : <p>还没有人赞赏，支持一下</p>}
+                        </SponseWrapper>
                         <AuthorColumn
                             style={{
                                 backgroundColor: "#fafafa",
