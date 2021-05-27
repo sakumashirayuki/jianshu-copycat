@@ -178,7 +178,7 @@ function Detail() {
     return (
         <div>
             {showLikedUsers && <Mask><LikedUser handleOnClose={closeModal} title={`${detailState.likes}人点赞`} list={detailState.likedUsers}/></Mask>}
-            {showSponse && <Mask><SponseDialog handleOnClose={closeModal}/></Mask>}
+            {showSponse && <Mask><SponseDialog handleOnClose={closeModal} authorAvatar={detailState.authorInfo.imgUrl}/></Mask>}
             <DetailWrapper>
                 <CSSTransition
                     in={showMessage}

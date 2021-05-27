@@ -254,11 +254,12 @@ export const Mask = styled.div`
 
 export const MiddleWindow = styled.div`
   position: relative;
-  height: 40vh;
+  height: 60vh;
   width: 30vw;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgb(26 26 26 / 10%);
+  box-sizing: border-box;
   color: #404040;
   font-size: 14px;
   overflow: auto;
@@ -320,3 +321,56 @@ export const UserItem = styled.div`
     font-size: 10px;
   }
 `
+
+export const SponseTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 24px;
+  img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+`;
+
+export const SponseSelection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+`;
+
+export const SponseOption = styled.div`
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  color: #969696;
+  &.activate{
+    border-color: #ec7259;
+    color: #ec7259;
+  }
+  input{
+    position: absolute;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    text-align: center;
+    font-size: 28px;
+  }
+  .hide{
+    opacity: 0;
+  }
+`
+
+export const ChoosePayment = styled.div`
+`;
