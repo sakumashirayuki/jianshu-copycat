@@ -339,8 +339,8 @@ export const SponseTitle = styled.div`
 export const SponseSelection = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 12px;
+  margin-bottom: 1rem;
 `;
 
 export const SponseOption = styled.div`
@@ -357,6 +357,9 @@ export const SponseOption = styled.div`
   &.activate{
     border-color: #ec7259;
     color: #ec7259;
+  }
+  &.disable{
+    pointer-events: none;
   }
   input{
     position: absolute;

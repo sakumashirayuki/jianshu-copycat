@@ -175,7 +175,12 @@ export const Button = styled.div`
     &.writting{
         color: #ffffff;
         background-color: #ea6f5a;
-        width: 100px;
+        min-width: 100px;
+    }
+    &.large{
+        font-size: 18px;
+        padding: 10px 48px;
+        border-radius: 24px;
     }
     &.right{
         float: right;
@@ -183,8 +188,6 @@ export const Button = styled.div`
         margin-right: 15px;
     }
     padding: 6px 12px;
-    height: 38px;
-    line-height: 24px;
     border-radius: 19px;
     border: 1px solid #ea6f5a;
     box-sizing: border-box;
@@ -192,3 +195,5 @@ export const Button = styled.div`
     text-align: center;
     cursor: pointer;
 `
+// height: 38px;
+// line-height: 24px;

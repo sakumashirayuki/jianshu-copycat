@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiFillAlipaySquare } from "react-icons/ai";
 import { FaCandyCane } from "react-icons/fa";
+import { RiWechatPayFill } from "react-icons/ri";
 
 import {
     MiddleWindow,
@@ -12,6 +13,8 @@ import {
     ChoosePayment,
 } from "../style";
 
+import { Button } from "../../../common/header/style";
+
 function SponseDialog(props) {
     const paymentOptions = [2, 5, 10, 20, 50];
 
@@ -20,6 +23,7 @@ function SponseDialog(props) {
         index: 0,
     });
     const [focusCustom, setFocusCustom] = useState(false);
+    const [modePayment, setModePayment] = useState("");
 
     const handleOnChooseValue = (money, index) => {
         setPayment({ money, index });
@@ -37,6 +41,22 @@ function SponseDialog(props) {
             return { ...prevPayment, money: e.target.value };
         });
     };
+    const selectPayment = (mode) => {
+        switch (mode) {
+            case "alipay":
+                setModePayment("alipay");
+                break;
+            case "wechat":
+                setModePayment("wechat");
+                break;
+            case "jianshu":
+                setModePayment("jianshu");
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <MiddleWindow
             tabIndex="-1"
@@ -97,15 +117,52 @@ function SponseDialog(props) {
                         padding: "12px",
                         border: "transparent",
                         borderRadius: "5px",
-                        backgroundColor:"#f2f2f2",
+                        backgroundColor: "#f2f2f2",
                         resize: "none",
-                        outline: "none"
+                        outline: "none",
                     }}
                 ></textarea>
                 <ChoosePayment>
-                    <p>选择支付方式</p>
+                    <p style={{ textAlign: "center" }}>选择支付方式</p>
+                    <SponseSelection>
+                        <SponseOption
+                            className={`${
+                                modePayment === "alipay" && "activate"
+                            }`}
+                            onClick={() => selectPayment("alipay")}
+                        >
+                            <RiWechatPayFill
+                                style={{ fontSize: "30px", color: "#00bb29" }}
+                            />
+                            <span>微信支付</span>
+                        </SponseOption>
+                        <SponseOption
+                            className={`${
+                                modePayment === "wechat" && "activate"
+                            }`}
+                            onClick={() => selectPayment("wechat")}
+                        >
+                            <AiFillAlipaySquare
+                                style={{ fontSize: "30px", color: "#1979FF" }}
+                            />
+                            <span>支付宝</span>
+                        </SponseOption>
+                        <SponseOption
+                            className={`disable ${
+                                modePayment === "jianshu" && "activate"
+                            }`}
+                            onClick={() => selectPayment("jianshu")}
+                        >
+                            简书余额
+                        </SponseOption>
+                    </SponseSelection>
                 </ChoosePayment>
-                <button>确认支付￥{payment.money}</button>
+                <Button
+                    className="writting large"
+                    style={{ width: "50%", margin: "auto" }}
+                >
+                    确认支付￥{payment.money}
+                </Button>
             </div>
         </MiddleWindow>
     );
