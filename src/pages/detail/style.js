@@ -45,6 +45,7 @@ export const AuthorColumn = styled.div`
     font-size: 16px;
     color: #404040;
     display: flex;
+    margin-bottom: 0;
   }
   .follow{
     font-size: 13px;
@@ -66,9 +67,9 @@ export const AuthorDescribe = styled.div`
 export const TextInformation = styled.div`
   display: flex;
   justify-content: flex-start;
-  margin-top: 12px;
   font-size: 13px;
   color: #969696;
+  line-height: 31px;
   & * {
     margin-right: 10px;
   }
@@ -78,7 +79,6 @@ export const TextInformation = styled.div`
   }
   .iconfont{
     position: relative;
-    bottom: 2px;
     font-size: 20px;
   }
 `

@@ -7,6 +7,7 @@ const DetailComponent  = React.lazy(()=>import("./pages/detail/index"));
 const LoginComponent = React.lazy(()=>import("./pages/login/index.jsx"));
 const SignupComponent = React.lazy(()=>import("./pages/signup/index"));
 const WriteComponent = React.lazy(()=>import("./pages/write/index"));
+const UserComponent = React.lazy(()=>import("./pages/user/index"));
 
 function App() {
   return (
@@ -36,6 +37,11 @@ function App() {
           <Route path='/write' exact>
             <Suspense fallback={<div>Loading...</div>}>
               <WriteComponent />
+            </Suspense>
+          </Route>
+          <Route path='/user' exact>
+            <Suspense fallback={<div>Loading...</div>}>
+              <UserComponent />
             </Suspense>
           </Route>
         </div>

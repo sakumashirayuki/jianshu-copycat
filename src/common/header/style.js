@@ -184,11 +184,11 @@ export const Button = styled.div`
     }
     &.right{
         float: right;
-        margin-top: 9px;
+        margin-top: 7px;
         margin-right: 15px;
     }
-    padding: 6px 12px;
-    border-radius: 19px;
+    padding: 12px;
+    border-radius: 20px;
     border: 1px solid #ea6f5a;
     box-sizing: border-box;
     font-size: 15px;

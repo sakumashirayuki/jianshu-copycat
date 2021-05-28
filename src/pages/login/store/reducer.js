@@ -4,7 +4,7 @@ import { CHANGELOGIN, CHANGELOGOUT, CHANGEREMEMBER } from "./action";
 
 const defaultState = {
     login: false,
-    isRemember: false
+    isRemember: false,
 }; 
 
 const homeReducer = produce((draft, action) => {

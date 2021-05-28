@@ -200,7 +200,7 @@ function Detail() {
                             <AuthorDescribe>
                                 <div className="name">
                                     <p>{detailState.authorInfo.name}</p>
-                                    <a href="/" className="follow">
+                                    <a href="/" className="follow" style={{lineHeight: "25px"}}>
                                         <span className="iconfont">
                                             &#xe60d;
                                         </span>
@@ -306,7 +306,7 @@ function Detail() {
                             <AuthorDescribe>
                                 <div className="name">
                                     <p>{detailState.authorInfo.name}</p>
-                                    <a href="/" className="follow">
+                                    <a href="/" className="follow" style={{lineHeight: "25px"}}>
                                         <span className="iconfont">
                                             &#xe60d;
                                         </span>
