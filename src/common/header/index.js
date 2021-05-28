@@ -151,7 +151,7 @@ function Header() {
                 </SearchWrapper>
                 <Addition>
                     <Link to="/write">
-                        <Button className="writting right">
+                        <Button className="solid right" style={{minWidth: "100px"}}>
                             <span className="iconfont">&#xe61c;</span> 写文章
                         </Button>
                     </Link>

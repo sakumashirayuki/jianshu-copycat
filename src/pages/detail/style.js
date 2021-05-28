@@ -143,6 +143,24 @@ export const CommentWrapper = styled.div`
   margin-bottom: 10px;
   background: #fff;
 `
+
+export const MainCommentCompose = styled.div`
+  display: flex;
+  align-content: flex-start;
+  img{
+    margin-right: 1rem;
+  }
+  margin-bottom: 1rem;
+`;
+
+export const CommentOption = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  color: #969696;
+  font-size: 14px;
+`
+
 // side section
 export const SideWrapper = styled.aside`
   width: 260px;

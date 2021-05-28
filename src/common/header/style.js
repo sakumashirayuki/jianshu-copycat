@@ -172,15 +172,19 @@ export const Button = styled.div`
         color: #ea6f5a;
         width: 80px;
     }
-    &.writting{
+    &.solid{
         color: #ffffff;
         background-color: #ea6f5a;
-        min-width: 100px;
     }
     &.large{
         font-size: 18px;
         padding: 10px 48px;
         border-radius: 24px;
+    }
+    &.small{
+        line-height: 19px;
+        font-size: 14px;
+        padding: 4px 12px;
     }
     &.right{
         float: right;

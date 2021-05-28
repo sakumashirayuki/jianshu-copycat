@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Menu, Dropdown } from 'antd';
-import 'antd/dist/antd.css';
+import { Menu, Dropdown } from "antd";
+import "antd/dist/antd.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
@@ -17,6 +17,7 @@ import { debounce } from "../../util/utils";
 import Popup from "./component/Popup";
 import LikedUser from "./component/LikedUser";
 import SponseDialog from "./component/SponseDialog";
+import CommentSection from "./component/CommentSection";
 
 import {
     DetailWrapper,
@@ -31,7 +32,6 @@ import {
     SponseWrapper,
     Container,
     RoundButton,
-    CommentWrapper,
     SideWrapper,
     SideSection,
     BreakLine,
@@ -41,12 +41,14 @@ import {
     FooterCompose,
     Mask,
 } from "./style";
+
 import { BackTop, BackDescribe } from "../home/style";
 import { Button } from "../../common/header/style";
 
 function Detail() {
     const detailState = useSelector((state) => state.detailReducer);
     const loginState = useSelector((state) => state.loginReducer);
+    const userState = useSelector((state) => state.userReducer);
 
     const dispatch = useDispatch();
 
@@ -58,30 +60,30 @@ function Detail() {
     const [showSponse, setShowSponse] = useState(false);
 
     const { SubMenu } = Menu;
-    
+
     const menu = (
         <Menu>
-          <SubMenu title="分享文章">
+            <SubMenu title="分享文章">
                 <Menu.Item>分享到微信</Menu.Item>
                 <Menu.Item>分享到微博</Menu.Item>
             </SubMenu>
-          <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="/">
-              收入专题
-            </a>
-          </Menu.Item>
-          <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="/">
-              收藏文章
-            </a>
-          </Menu.Item>
-          <Menu.Item>
-            <a target="_blank" rel="noopener noreferrer" href="/">
-              举报文章
-            </a>
-          </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="/">
+                    收入专题
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="/">
+                    收藏文章
+                </a>
+            </Menu.Item>
+            <Menu.Item>
+                <a target="_blank" rel="noopener noreferrer" href="/">
+                    举报文章
+                </a>
+            </Menu.Item>
         </Menu>
-      );
+    );
 
     // scroll to top
     const handleScrollTop = () => {
@@ -143,16 +145,16 @@ function Detail() {
 
     const handleOnClickLikedUser = () => {
         setShowLikedUsers(true);
-    }
+    };
 
     const handleOnClickSponse = () => {
         setShowSponse(true);
-    }
+    };
 
     const closeModal = (name) => {
         switch (name) {
             case "likedUser":
-                setShowLikedUsers(false);        
+                setShowLikedUsers(false);
                 break;
             case "sponseDialog":
                 setShowSponse(false);
@@ -160,7 +162,7 @@ function Detail() {
             default:
                 break;
         }
-    }
+    };
 
     useEffect(() => {
         dispatch(actions.getDetailAction());
@@ -177,8 +179,23 @@ function Detail() {
 
     return (
         <div>
-            {showLikedUsers && <Mask><LikedUser handleOnClose={closeModal} title={`${detailState.likes}人点赞`} list={detailState.likedUsers}/></Mask>}
-            {showSponse && <Mask><SponseDialog handleOnClose={closeModal} authorAvatar={detailState.authorInfo.imgUrl}/></Mask>}
+            {showLikedUsers && (
+                <Mask>
+                    <LikedUser
+                        handleOnClose={closeModal}
+                        title={`${detailState.likes}人点赞`}
+                        list={detailState.likedUsers}
+                    />
+                </Mask>
+            )}
+            {showSponse && (
+                <Mask>
+                    <SponseDialog
+                        handleOnClose={closeModal}
+                        authorAvatar={detailState.authorInfo.imgUrl}
+                    />
+                </Mask>
+            )}
             <DetailWrapper>
                 <CSSTransition
                     in={showMessage}
@@ -200,7 +217,11 @@ function Detail() {
                             <AuthorDescribe>
                                 <div className="name">
                                     <p>{detailState.authorInfo.name}</p>
-                                    <a href="/" className="follow" style={{lineHeight: "25px"}}>
+                                    <a
+                                        href="/"
+                                        className="follow"
+                                        style={{ lineHeight: "25px" }}
+                                    >
                                         <span className="iconfont">
                                             &#xe60d;
                                         </span>
@@ -278,20 +299,32 @@ function Detail() {
                                     随笔
                                 </a>
                                 <div>
-                                <Dropdown overlay={menu} placement="topCenter">
-                                    {/* <Button>topCenter</Button> */}
-                                    <RoundButton>
-                                        <AiOutlineEllipsis />
-                                    </RoundButton>
-                                </Dropdown>
+                                    <Dropdown
+                                        overlay={menu}
+                                        placement="topCenter"
+                                    >
+                                        {/* <Button>topCenter</Button> */}
+                                        <RoundButton>
+                                            <AiOutlineEllipsis />
+                                        </RoundButton>
+                                    </Dropdown>
                                 </div>
                             </Container>
                         </BottomLine>
                         <BreakLine />
                         <SponseWrapper>
                             <p>“小礼物走一走，来简书关注我”</p>
-                            <Button className="writting" onClick={handleOnClickSponse}>赞赏支持</Button>
-                            {detailState.sponse > 0 ? <p>共{detailState.sponse}人赞赏</p> : <p>还没有人赞赏，支持一下</p>}
+                            <Button
+                                className="solid"
+                                onClick={handleOnClickSponse}
+                            >
+                                赞赏支持
+                            </Button>
+                            {detailState.sponse > 0 ? (
+                                <p>共{detailState.sponse}人赞赏</p>
+                            ) : (
+                                <p>还没有人赞赏，支持一下</p>
+                            )}
                         </SponseWrapper>
                         <AuthorColumn
                             style={{
@@ -306,7 +339,11 @@ function Detail() {
                             <AuthorDescribe>
                                 <div className="name">
                                     <p>{detailState.authorInfo.name}</p>
-                                    <a href="/" className="follow" style={{lineHeight: "25px"}}>
+                                    <a
+                                        href="/"
+                                        className="follow"
+                                        style={{ lineHeight: "25px" }}
+                                    >
                                         <span className="iconfont">
                                             &#xe60d;
                                         </span>
@@ -331,16 +368,7 @@ function Detail() {
                             </AuthorDescribe>
                         </AuthorColumn>
                     </BlogWrapper>
-                    <CommentWrapper>
-                        <p>comment~</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                        <p>哈哈哈哈哈</p>
-                    </CommentWrapper>
+                    <CommentSection avatarUrl={userState.avatarUrl}/>
                 </Main>
                 <SideWrapper>
                     <SideSection>
