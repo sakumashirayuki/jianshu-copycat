@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 import { CommentWrapper, MainCommentCompose, CommentOption } from "../style";
 
@@ -7,10 +9,37 @@ import { Button } from "../../../common/header/style";
 
 function CommentSection(props) {
     const [showOption, setShowOption] = useState(false);
+    const [showPicker, setShowPicker] = useState(false);
+
+    const refPicker = useRef(null);
+    const refPop = useRef(null);
 
     const handleOnFocusText = () => {
         setShowOption(true);
     };
+
+    const handleOnClickPicker = () => {
+        setShowPicker(true);
+    };
+
+    const handleClickOutside = (event) => {
+        console.log(refPicker.current.contains(event.target));
+        if (
+            refPicker.current &&
+            !refPicker.current.contains(event.target) &&
+            refPop.current &&
+            !refPop.current.contains(event.target)
+        ) {
+            setShowPicker(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, true);
+        return () => {
+            document.removeEventListener("click", handleClickOutside, true);
+        };
+    }, []);
 
     return (
         <CommentWrapper>
@@ -44,12 +73,23 @@ function CommentSection(props) {
                             <div
                                 style={{ display: "flex", lineHeight: "29px" }}
                             >
-                                <HiOutlineEmojiHappy
+                                <div
+                                    ref={refPicker}
                                     style={{
-                                        margin: "auto 0.5rem auto 0",
-                                        fontSize: "18px",
+                                        marginRight: "0.5rem",
+                                        display: "flex",
+                                        alignContent: "flex-end",
                                     }}
-                                />
+                                >
+                                    <HiOutlineEmojiHappy
+                                        style={{
+                                            fontSize: "18px",
+                                            lineHeight: "18px",
+                                            margin: "auto",
+                                        }}
+                                        onClick={handleOnClickPicker}
+                                    />
+                                </div>
                                 <p>Ctrl + Enter 发表</p>
                             </div>
                             <div style={{ display: "flex" }}>
@@ -62,6 +102,11 @@ function CommentSection(props) {
                                 <Button className="small">取消</Button>
                             </div>
                         </CommentOption>
+                    )}
+                    {showPicker && (
+                        <div ref={refPop} style={{display: "inline"}}>
+                            <Picker set="apple" />
+                        </div>
                     )}
                 </div>
             </MainCommentCompose>
