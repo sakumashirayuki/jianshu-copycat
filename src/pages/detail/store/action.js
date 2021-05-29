@@ -16,7 +16,8 @@ const changeDetailAction = (result) => { // load the detail information
         likedUsers: result.likedUsers,
         sponse: result.sponse,
         authorInfo: result.authorInfo,
-        recommendList: result.recommendList
+        recommendList: result.recommendList,
+        comments: result.comments
     };
 }
 

@@ -150,7 +150,7 @@ export const MainCommentCompose = styled.div`
   img{
     margin-right: 1rem;
   }
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 `;
 
 export const CommentOption = styled.div`
@@ -178,6 +178,75 @@ export const CommentOption = styled.div`
     transition: opacity 200ms, transform 200ms;
   }
 `
+
+export const CommentListHeader = styled.h3`
+  border-left: 4px solid #ec7259;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-left: 12px;
+`
+export const AuthorOnly = styled.span`
+  font-size: 12px;
+  margin-left: 12px;
+  padding: 2px 8px;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  cursor: pointer;
+  color: #969696;
+`
+
+export const TimeOrder = styled.div`
+  color: #2d2d2d;
+  font-size: 14px;
+  margin-left: 12px;
+  &.no-select{
+    color: #969696;
+  }
+`
+
+export const CommentListContainer = styled.div`
+  display: flex;
+`
+
+export const CommentInfo = styled.div`
+  margin-left: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+  padding-bottom: 16px;
+  .name{
+    font-size: 15px;
+  }
+  .info{
+    margin-top: 2px;
+    font-size: 12px;
+    color: #969696;
+  }
+  .content{
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  .operation{
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #b0b0b0;
+    div{
+      display: flex;
+    }
+  }
+`;
+
+export const CommentButton = styled.div`
+  &.left{
+    margin-right: 16px;
+  }
+  &.right{
+    margin-left: 16px;
+  }
+`;
 
 // side section
 export const SideWrapper = styled.aside`

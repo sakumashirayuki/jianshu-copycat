@@ -8,6 +8,8 @@ import { CommentWrapper, MainCommentCompose, CommentOption } from "../style";
 
 import { Button } from "../../../common/header/style";
 
+import CommentList from "./CommentList";
+
 import { getPositionForTextArea } from "../../../util/textEditor";
 
 function CommentSection(props) {
@@ -155,14 +157,7 @@ function CommentSection(props) {
                     )}
                 </div>
             </MainCommentCompose>
-            <p>comment~</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
-            <p>哈哈哈哈哈</p>
+            <CommentList comments={props.comments}/>
         </CommentWrapper>
     );
 }

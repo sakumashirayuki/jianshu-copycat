@@ -368,7 +368,7 @@ function Detail() {
                             </AuthorDescribe>
                         </AuthorColumn>
                     </BlogWrapper>
-                    <CommentSection avatarUrl={userState.avatarUrl}/>
+                    <CommentSection avatarUrl={userState.avatarUrl} comments={detailState.comments}/>
                 </Main>
                 <SideWrapper>
                     <SideSection>
