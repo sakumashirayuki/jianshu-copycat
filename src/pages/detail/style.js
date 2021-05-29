@@ -159,6 +159,24 @@ export const CommentOption = styled.div`
   margin-top: 1rem;
   color: #969696;
   font-size: 14px;
+  &.slideY-enter{
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  &.slideY-enter-active{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms, transform 200ms;
+  }
+  &.slideY-exit{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  &.slideY-exit-active{
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 200ms, transform 200ms;
+  }
 `
 
 // side section
@@ -240,7 +258,7 @@ export const PopupContainer = styled.div`
   }
   &.alert-enter-active {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
     transition: opacity 300ms, transform 300ms;
   }
   &.alert-exit {
@@ -392,6 +410,3 @@ export const SponseOption = styled.div`
     opacity: 0;
   }
 `
-
-export const ChoosePayment = styled.div`
-`;

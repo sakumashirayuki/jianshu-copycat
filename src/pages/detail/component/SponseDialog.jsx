@@ -10,7 +10,6 @@ import {
     SponseTitle,
     SponseSelection,
     SponseOption,
-    ChoosePayment,
 } from "../style";
 
 import { Button } from "../../../common/header/style";
@@ -122,7 +121,7 @@ function SponseDialog(props) {
                         outline: "none",
                     }}
                 ></textarea>
-                <ChoosePayment>
+                <div>
                     <p style={{ textAlign: "center" }}>选择支付方式</p>
                     <SponseSelection>
                         <SponseOption
@@ -156,9 +155,9 @@ function SponseDialog(props) {
                             简书余额
                         </SponseOption>
                     </SponseSelection>
-                </ChoosePayment>
+                </div>
                 <Button
-                    className="writting large"
+                    className="solid large"
                     style={{ width: "50%", margin: "auto" }}
                 >
                     确认支付￥{payment.money}

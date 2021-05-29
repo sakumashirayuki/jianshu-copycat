@@ -191,6 +191,11 @@ export const Button = styled.div`
         margin-top: 7px;
         margin-right: 15px;
     }
+    &.no-click{
+        cursor: not-allowed;    
+        background-color: #f3a393;
+        border-color: #f3a393;
+    }
     padding: 12px;
     border-radius: 20px;
     border: 1px solid #ea6f5a;

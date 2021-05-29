@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import { CSSTransition } from 'react-transition-group';
 
 import { CommentWrapper, MainCommentCompose, CommentOption } from "../style";
 
@@ -37,6 +38,11 @@ function CommentSection(props) {
         }
     };
 
+    const keydownHandler = (e) => {
+        if(e.keyCode===13 && e.ctrlKey)
+            handleSubmit();
+    }
+
     const changeTextArea = (e) => {
         setTextContent(e.target.value);
     }
@@ -48,12 +54,28 @@ function CommentSection(props) {
         });
     }
 
+    const handleSubmit = () => {
+        if(textContent !== "")
+            console.log("submit!");
+    }
+    
+    const handleOnCancel = () => {
+        setShowOption(false);
+    }
+
     useEffect(() => {
         document.addEventListener("click", handleClickOutside, true);
         return () => {
             document.removeEventListener("click", handleClickOutside, true);
         };
     }, []);
+
+    useEffect(() => {
+        document.addEventListener("keydown", keydownHandler);
+        return () => {
+            document.removeEventListener("keydown", keydownHandler);
+        }
+    });
 
     return (
         <CommentWrapper>
@@ -85,7 +107,12 @@ function CommentSection(props) {
                         onChange={changeTextArea}
                         value={textContent}
                     ></textarea>
-                    {showOption && (
+                    <CSSTransition
+                        in={showOption}
+                        timeout={200}
+                        classNames="slideY"
+                        unmountOnExit
+                    >
                         <CommentOption>
                             <div
                                 style={{ display: "flex", lineHeight: "29px" }}
@@ -112,14 +139,15 @@ function CommentSection(props) {
                             <div style={{ display: "flex" }}>
                                 <Button
                                     style={{ marginRight: "0.5rem" }}
-                                    className="small solid"
+                                    className={`small solid ${textContent === "" && "no-click"}`}
+                                    onClick={handleSubmit}
                                 >
                                     发布
                                 </Button>
-                                <Button className="small">取消</Button>
+                                <Button className="small" onClick={handleOnCancel}>取消</Button>
                             </div>
                         </CommentOption>
-                    )}
+                    </CSSTransition>
                     {showPicker && (
                         <div ref={refPop} style={{display: "inline"}}>
                             <Picker set="apple" onSelect={addEmoji}/>
