@@ -7,12 +7,16 @@ import { CommentWrapper, MainCommentCompose, CommentOption } from "../style";
 
 import { Button } from "../../../common/header/style";
 
+import { getPositionForTextArea } from "../../../util/textEditor";
+
 function CommentSection(props) {
     const [showOption, setShowOption] = useState(false);
     const [showPicker, setShowPicker] = useState(false);
+    const [textContent, setTextContent] = useState("");
 
     const refPicker = useRef(null);
     const refPop = useRef(null);
+    const refTextArea = useRef(null);
 
     const handleOnFocusText = () => {
         setShowOption(true);
@@ -23,7 +27,6 @@ function CommentSection(props) {
     };
 
     const handleClickOutside = (event) => {
-        console.log(refPicker.current.contains(event.target));
         if (
             refPicker.current &&
             !refPicker.current.contains(event.target) &&
@@ -33,6 +36,17 @@ function CommentSection(props) {
             setShowPicker(false);
         }
     };
+
+    const changeTextArea = (e) => {
+        setTextContent(e.target.value);
+    }
+
+    const addEmoji = (emoji) => {
+        const currenCursorPosition = getPositionForTextArea(refTextArea);
+        setTextContent((prevContent)=>{
+            return prevContent.substring(0, currenCursorPosition.start) + emoji.native + prevContent.substring(currenCursorPosition.end);
+        });
+    }
 
     useEffect(() => {
         document.addEventListener("click", handleClickOutside, true);
@@ -67,6 +81,9 @@ function CommentSection(props) {
                             outline: "none",
                         }}
                         onFocus={handleOnFocusText}
+                        ref={refTextArea}
+                        onChange={changeTextArea}
+                        value={textContent}
                     ></textarea>
                     {showOption && (
                         <CommentOption>
@@ -105,7 +122,7 @@ function CommentSection(props) {
                     )}
                     {showPicker && (
                         <div ref={refPop} style={{display: "inline"}}>
-                            <Picker set="apple" />
+                            <Picker set="apple" onSelect={addEmoji}/>
                         </div>
                     )}
                 </div>
