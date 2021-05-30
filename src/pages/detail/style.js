@@ -207,6 +207,11 @@ export const TimeOrder = styled.div`
 
 export const CommentListContainer = styled.div`
   display: flex;
+  &:last-child{
+    .comment-info{
+      border: none;
+    }
+  }
 `
 
 export const CommentInfo = styled.div`
