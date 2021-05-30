@@ -171,10 +171,12 @@ export const Button = styled.div`
     &.reg{
         color: #ea6f5a;
         width: 80px;
+        border-color: #ea6f5a;
     }
     &.solid{
         color: #ffffff;
         background-color: #ea6f5a;
+        border-color: #ea6f5a;
     }
     &.large{
         font-size: 18px;
@@ -198,7 +200,7 @@ export const Button = styled.div`
     }
     padding: 12px;
     border-radius: 20px;
-    border: 1px solid #ea6f5a;
+    border: 1px solid #999;
     box-sizing: border-box;
     font-size: 15px;
     text-align: center;

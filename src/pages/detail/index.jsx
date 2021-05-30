@@ -17,6 +17,7 @@ import { debounce } from "../../util/utils";
 import Popup from "./component/Popup";
 import LikedUser from "./component/LikedUser";
 import SponseDialog from "./component/SponseDialog";
+import ReportDialog from "./component/ReportDialog";
 import CommentSection from "./component/CommentSection";
 
 import {
@@ -194,6 +195,11 @@ function Detail() {
                         handleOnClose={closeModal}
                         authorAvatar={detailState.authorInfo.imgUrl}
                     />
+                </Mask>
+            )}
+            {detailState.showReport && (
+                <Mask>
+                    <ReportDialog />
                 </Mask>
             )}
             <DetailWrapper>

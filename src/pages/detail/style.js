@@ -140,7 +140,7 @@ export const SponseWrapper = styled.div`
 export const CommentWrapper = styled.div`
   width: 730px;
   padding: 32px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   background: #fff;
 `
 
@@ -371,7 +371,8 @@ export const Mask = styled.div`
 
 export const MiddleWindow = styled.div`
   position: relative;
-  height: 60vh;
+  min-height: 10vh;
+  max-height: 60vh;
   width: 30vw;
   background-color: #fff;
   border-radius: 4px;
@@ -399,7 +400,7 @@ export const CloseBtn = styled.button`
 export const ModalHeader = styled.h2`
   position: fixed;
   background-color: #fff;
-  width: 559px;
+  width: inherit;
   box-sizing: border-box;
   border-radius: 4px;
   padding: 1rem 2rem;
@@ -412,7 +413,6 @@ export const ModalContent = styled.div`
   position: relative;
   top: 54px;
   padding: 0 1.5rem;
-  overflow: auto;
 `
 
 export const UserItem = styled.div`

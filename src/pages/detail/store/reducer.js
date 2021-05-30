@@ -1,6 +1,14 @@
 import { original, produce } from "immer";
 
-import { CHANGE_DETAIL, TOGGLETOPSHOW, LIKE, DISLIKE, REMOVEPREFERNCE } from "./action"
+import {
+    CHANGE_DETAIL,
+    TOGGLETOPSHOW,
+    LIKE,
+    DISLIKE,
+    REMOVEPREFERNCE,
+    OPENREPORT,
+    CLOSEREPORT,
+} from "./action";
 
 const defaultState = {
     title: "",
@@ -11,53 +19,60 @@ const defaultState = {
     sponse: 0,
     preference: "",
     showScroll: false,
+    showReport: false,
     authorInfo: {
-      name: "",
-      imgUrl: "",
-      level: 0,
-      wordAmount: 0,
-      readAmount: 0,
-      asset: 0,
-      workList: []
+        name: "",
+        imgUrl: "",
+        level: 0,
+        wordAmount: 0,
+        readAmount: 0,
+        asset: 0,
+        workList: [],
     },
     recommendList: [],
-    comments: []
-}; 
+    comments: [],
+};
 
 const homeReducer = produce((draft, action) => {
-  switch (action.type) {
-    case CHANGE_DETAIL:
-      draft.title = action.title;
-      draft.content = action.content;
-      draft.likes = action.likes;
-      draft.likedUsers = action.likedUsers;
-      draft.sponse = action.sponse;
-      draft.authorInfo = action.authorInfo;
-      draft.recommendList = action.recommendList;
-      draft.comments = action.comments;
-      break;
-    case TOGGLETOPSHOW:
-      draft.showScroll = action.flag;
-      break;
-    case LIKE:
-      console.log(draft.likes);
-      draft.likes = original(draft).likes + 1;
-      draft.preference = 'like';
-      break;
-    case DISLIKE:
-      draft.likes = original(draft).likes - 1;
-      draft.preference = 'dislike';
-      break;
-    case REMOVEPREFERNCE:
-      const previousPre = original(draft).preference;
-      if(previousPre==='like'){
-        draft.likes = original(draft).likes - 1;  
-      }else if(previousPre==='dislike'){
-        draft.likes = original(draft).likes + 1;
-      }
-      draft.preference = "";
-      break;
-  }
+    switch (action.type) {
+        case CHANGE_DETAIL:
+            draft.title = action.title;
+            draft.content = action.content;
+            draft.likes = action.likes;
+            draft.likedUsers = action.likedUsers;
+            draft.sponse = action.sponse;
+            draft.authorInfo = action.authorInfo;
+            draft.recommendList = action.recommendList;
+            draft.comments = action.comments;
+            break;
+        case TOGGLETOPSHOW:
+            draft.showScroll = action.flag;
+            break;
+        case LIKE:
+            console.log(draft.likes);
+            draft.likes = original(draft).likes + 1;
+            draft.preference = "like";
+            break;
+        case DISLIKE:
+            draft.likes = original(draft).likes - 1;
+            draft.preference = "dislike";
+            break;
+        case REMOVEPREFERNCE:
+            const previousPre = original(draft).preference;
+            if (previousPre === "like") {
+                draft.likes = original(draft).likes - 1;
+            } else if (previousPre === "dislike") {
+                draft.likes = original(draft).likes + 1;
+            }
+            draft.preference = "";
+            break;
+        case OPENREPORT:
+            draft.showReport = true;
+            break;
+        case CLOSEREPORT:
+            draft.showReport = false;
+            break;
+    }
 }, defaultState);
 
 export default homeReducer;

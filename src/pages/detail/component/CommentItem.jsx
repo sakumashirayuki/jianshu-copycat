@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from "react-redux";
 
 import {
     AiFillLike,
@@ -12,8 +13,11 @@ import {
     CommentButton
 }from "../style";
 
+import { actions } from "../store";
+
 function CommentItem(props){
     const [mouseIn, setMouseIn] = useState(false);
+    const dispatch = useDispatch();
 
     const handleOnMouseEnter = () => {
         setMouseIn(true);
@@ -22,6 +26,10 @@ function CommentItem(props){
     const handleOnMouseLeave = () => {
         setMouseIn(false);
     };
+
+    const handleOnClickReport = () => {
+        dispatch(actions.openReportAction());
+    }
 
     return (<CommentListContainer key={props.eachComment.id}>
         <img
@@ -48,7 +56,7 @@ function CommentItem(props){
                     <CommentButton className="left orange"><AiFillLike style={{marginRight: "2px"}}/> 赞</CommentButton>
                     <CommentButton className="left"><FaCommentAlt style={{marginRight: "2px"}}/>回复</CommentButton>
                 </div>
-                <CommentButton className={`right ${!mouseIn && "hide"}`}><RiAlarmWarningFill style={{marginRight: "2px"}}/>举报</CommentButton>
+                <CommentButton className={`right ${!mouseIn && "hide"}`} onClick={handleOnClickReport}><RiAlarmWarningFill style={{marginRight: "2px"}}/>举报</CommentButton>
             </div>
         </CommentInfo>
     </CommentListContainer>)

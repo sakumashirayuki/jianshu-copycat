@@ -5,6 +5,8 @@ export const TOGGLETOPSHOW = "toggle_top_show";
 export const LIKE = "like";
 export const DISLIKE = "dislike";
 export const REMOVEPREFERNCE = "remove_preference";
+export const OPENREPORT = "open_report";
+export const CLOSEREPORT = "close_report";
 
 const changeDetailAction = (result) => { // load the detail information
     return {
@@ -56,5 +58,17 @@ export const dislikeAction = () => {
 export const removePreferenceAction = () => {
     return {
         type: REMOVEPREFERNCE
+    };
+}
+
+export const openReportAction = () => {
+    return {
+        type: OPENREPORT
+    };
+}
+
+export const closeReportAction = () => {
+    return{
+        type: CLOSEREPORT
     };
 }
