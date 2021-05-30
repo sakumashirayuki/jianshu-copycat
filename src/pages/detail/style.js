@@ -240,11 +240,23 @@ export const CommentInfo = styled.div`
 `;
 
 export const CommentButton = styled.div`
+  cursor: pointer;
+  &:hover{
+    color: #9c9c9c;
+  }
   &.left{
     margin-right: 16px;
   }
   &.right{
     margin-left: 16px;
+  }
+  &.hide{
+    opacity: 0;
+  }
+  &.orange{
+    &:hover{
+      color: #ec7259;
+    }
   }
 `;
 
