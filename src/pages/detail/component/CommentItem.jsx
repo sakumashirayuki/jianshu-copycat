@@ -7,6 +7,7 @@ import { FaCommentAlt } from "react-icons/fa";
 import { RiAlarmWarningFill } from "react-icons/ri";
 
 import BasicTextArea from "./BasicTextArea";
+import SubComment from "./SubComment";
 
 import { CommentListContainer, CommentInfo, CommentButton } from "../style";
 
@@ -45,56 +46,59 @@ function CommentItem(props) {
 
     return (
         <CommentListContainer key={props.eachComment.id}>
-            <img
-                src={props.eachComment.userInfo.imgUrl}
-                alt="avatar"
-                style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    border: "1px solid #eee",
-                }}
-            />
-            <CommentInfo className="comment-info">
-                <p className="name">{props.eachComment.userInfo.name}</p>
-                <div className="info">
-                    <span>{props.eachComment.id}楼 </span>
-                    <time dateTime={props.eachComment.time}>
-                        {props.eachComment.time}
-                    </time>
-                </div>
-                <p className="content">{props.eachComment.content}</p>
-                <div
-                    className="operation"
-                    onMouseEnter={handleOnMouseEnter}
-                    onMouseLeave={handleOnMouseLeave}
-                >
-                    <div>
-                        <CommentButton className="left orange">
-                            <AiFillLike style={{ marginRight: "2px" }} /> 赞
-                        </CommentButton>
-                        <CommentButton className="left" onClick={handleOnClickReply}>
-                            <FaCommentAlt style={{ marginRight: "2px" }} />
-                            回复
+            <div style={{display: "flex"}}>
+                <img
+                    src={props.eachComment.userInfo.imgUrl}
+                    alt="avatar"
+                    style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        border: "1px solid #eee",
+                    }}
+                />
+                <CommentInfo className="comment-info">
+                    <p className="name">{props.eachComment.userInfo.name}</p>
+                    <div className="info">
+                        <span>{props.eachComment.id}楼 </span>
+                        <time dateTime={props.eachComment.time}>
+                            {props.eachComment.time}
+                        </time>
+                    </div>
+                    <p className="content">{props.eachComment.content}</p>
+                    <div
+                        className="operation"
+                        onMouseEnter={handleOnMouseEnter}
+                        onMouseLeave={handleOnMouseLeave}
+                    >
+                        <div>
+                            <CommentButton className="left orange">
+                                <AiFillLike style={{ marginRight: "2px" }} /> 赞
+                            </CommentButton>
+                            <CommentButton className="left" onClick={handleOnClickReply}>
+                                <FaCommentAlt style={{ marginRight: "2px" }} />
+                                回复
+                            </CommentButton>
+                        </div>
+                        <CommentButton
+                            className={`right ${!mouseIn && "hide"}`}
+                            onClick={handleOnClickReport}
+                        >
+                            <RiAlarmWarningFill style={{ marginRight: "2px" }} />
+                            举报
                         </CommentButton>
                     </div>
-                    <CommentButton
-                        className={`right ${!mouseIn && "hide"}`}
-                        onClick={handleOnClickReport}
+                    <CSSTransition
+                        in={showTextarea}
+                        timeout={200}
+                        classNames={slideYTransition}
+                        unmountOnExit
                     >
-                        <RiAlarmWarningFill style={{ marginRight: "2px" }} />
-                        举报
-                    </CommentButton>
-                </div>
-                <CSSTransition
-                    in={showTextarea}
-                    timeout={200}
-                    classNames={slideYTransition}
-                    unmountOnExit
-                >
-                <BasicTextArea handleOnclose={hideReplyTextarea}/>
-                </CSSTransition>
-            </CommentInfo>
+                    <BasicTextArea handleOnclose={hideReplyTextarea}/>
+                    </CSSTransition>
+                </CommentInfo>
+            </div>
+            <SubComment />
         </CommentListContainer>
     );
 }
