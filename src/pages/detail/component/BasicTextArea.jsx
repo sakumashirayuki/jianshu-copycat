@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
-import styled from "styled-components";
 
 import { CommentOption } from "../style";
 import { Button } from "../../../common/header/style";

@@ -1,17 +1,17 @@
-.slideY-enter{
+.enter{
     opacity: 0;
     height: 0;
 }
-.slideY-enter-active{
+.enterActive{
     opacity: 1;
     height: 127px;
     transition: opacity 200ms, height 200ms;
 }
-.slideY-exit{
+.exit{
     opacity: 1;
     height: 127px;
 }
-.slideY-exit-active{
+.exitActive{
     opacity: 0;
     height: 0;
     transition: opacity 200ms, height 200ms;

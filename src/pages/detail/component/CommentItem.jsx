@@ -12,7 +12,9 @@ import { CommentListContainer, CommentInfo, CommentButton } from "../style";
 
 import { actions } from "../store";
 
-import "../../../css/common.css"
+import slideYTransition from "../../../transitions/slideY.module.css";
+
+// import "../../../css/common.css"
 
 function CommentItem(props) {
     const [mouseIn, setMouseIn] = useState(false);
@@ -87,7 +89,7 @@ function CommentItem(props) {
                 <CSSTransition
                     in={showTextarea}
                     timeout={200}
-                    classNames="slideY"
+                    classNames={slideYTransition}
                     unmountOnExit
                 >
                 <BasicTextArea handleOnclose={hideReplyTextarea}/>
