@@ -173,7 +173,8 @@
                     "imgUrl": "https://upload.jianshu.io/users/upload_avatars/24888985/4a9b0a6f-24e2-4ccd-beae-c76b45247df9.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp"
                 },
                 "time": "02.06 21:51",
-                "content": "怎么说呢"
+                "content": "怎么说呢",
+                "subComments": []
             },
             {
                 "id": 2,
@@ -182,7 +183,28 @@
                     "imgUrl": "https://upload.jianshu.io/users/upload_avatars/24888985/4a9b0a6f-24e2-4ccd-beae-c76b45247df9.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp"
                 },
                 "time": "02.06 21:51",
-                "content": "怎么说呢"
+                "content": "怎么说呢",
+                "subComments": [
+                    {
+                        "id": 1,
+                        "userInfo": {
+                            "name": "杭公子",
+                            "imgUrl" : "https://upload.jianshu.io/users/upload_avatars/4041861/93eaf331-8ae6-4320-8e61-fa867e015687.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp"
+                        },
+                        "time": "03.30 10.01",
+                        "content": "嗯嗯，是的"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "userInfo": {
+                    "name": "若安山3",
+                    "imgUrl": "https://upload.jianshu.io/users/upload_avatars/24888985/4a9b0a6f-24e2-4ccd-beae-c76b45247df9.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/80/h/80/format/webp"
+                },
+                "time": "02.06 21:51",
+                "content": "有道理",
+                "subComments": []
             }
         ]
     }

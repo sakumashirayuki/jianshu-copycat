@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { CSSTransition } from 'react-transition-group';
 
 import { FaCommentAlt } from "react-icons/fa";
 import { RiAlarmWarningFill } from "react-icons/ri";
+import { FiEdit3 } from "react-icons/fi";
 
 import { actions } from "../store";
 
-import BasicTextArea from "./BasicTextArea";
+import { CommentInfo, CommentButton, BreakLine } from "../style";
 
-import {CommentInfo, CommentButton } from "../style";
-
-import slideYTransition from "../../../transitions/slideY.module.css";
-
-function SubComment() {
+function SubComment(props) {
     const [mouseIn, setMouseIn] = useState(false);
     const [showTextarea, setShowTextarea] = useState(false);
+
+    const { userInfo, time, content } = props.comment;
 
     const dispatch = useDispatch();
 
@@ -23,25 +21,39 @@ function SubComment() {
         dispatch(actions.openReportAction());
     };
 
-    const hideReplyTextarea = () => {
-        setShowTextarea(false);
-    }
+    const handleOnClickReply = () => {
+        props.setShowTextarea();
+    };
 
     return (
-        <CommentInfo className="comment-info">
-            <p className="name">杭公子</p>
-            <div className="info">
-                <time dateTime="03.30 10:01">
-                    03.30 10:01
-                </time>
+        <CommentInfo>
+            <div style={{display: "flex"}}>
+                <img src={userInfo.imgUrl} 
+                    alt="avatar"
+                    style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        border: "1px solid #eee",
+                        marginRight: "10px"
+                    }} />
+                <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                    <p className="name">{userInfo.name}</p>
+                    <div className="info">
+                        <time dateTime={time}>
+                            {time}
+                        </time>
+                    </div>
+                </div>
             </div>
-            <p className="content">嗯嗯，是的</p>
+            <p className="content">{content}</p>
             <div
                 className="operation"
             >
                 <div>
                     <CommentButton
                         className="left"
+                        onClick={handleOnClickReply}
                     >
                         <FaCommentAlt style={{ marginRight: "2px" }} />
                         回复
@@ -55,14 +67,13 @@ function SubComment() {
                     举报
                 </CommentButton>
             </div>
-            <CSSTransition
-                in={showTextarea}
-                timeout={200}
-                classNames={slideYTransition}
-                unmountOnExit
-            >
-                <BasicTextArea handleOnclose={hideReplyTextarea} />
-            </CSSTransition>
+            <BreakLine />
+            <div className="operation">
+                <CommentButton className="left" onClick={handleOnClickReply}>
+                    <FiEdit3 style={{ marginRight: "2px" }}/>
+                    添加新评论
+                </CommentButton>
+            </div>
         </CommentInfo>
     );
 }

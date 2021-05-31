@@ -207,16 +207,14 @@ export const TimeOrder = styled.div`
 
 export const CommentListContainer = styled.div`
   &:last-child{
-    .comment-info{
-      border: none;
+    .break-line{
+      display: none;
     }
   }
 `
 
 export const CommentInfo = styled.div`
   margin-left: 10px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
   width: 100%;
   padding-bottom: 16px;
   .name{

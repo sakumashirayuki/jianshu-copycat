@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { CSSTransition } from 'react-transition-group';
+import { CSSTransition } from "react-transition-group";
 
 import { AiFillLike } from "react-icons/ai";
 import { FaCommentAlt } from "react-icons/fa";
@@ -9,7 +9,12 @@ import { RiAlarmWarningFill } from "react-icons/ri";
 import BasicTextArea from "./BasicTextArea";
 import SubComment from "./SubComment";
 
-import { CommentListContainer, CommentInfo, CommentButton } from "../style";
+import {
+    CommentListContainer,
+    CommentInfo,
+    CommentButton,
+    BreakLine,
+} from "../style";
 
 import { actions } from "../store";
 
@@ -37,16 +42,15 @@ function CommentItem(props) {
 
     const handleOnClickReply = () => {
         setShowTextarea(true);
-    }
+    };
 
     const hideReplyTextarea = () => {
         setShowTextarea(false);
-    }
-
+    };
 
     return (
         <CommentListContainer key={props.eachComment.id}>
-            <div style={{display: "flex"}}>
+            <div style={{ display: "flex" }}>
                 <img
                     src={props.eachComment.userInfo.imgUrl}
                     alt="avatar"
@@ -75,7 +79,10 @@ function CommentItem(props) {
                             <CommentButton className="left orange">
                                 <AiFillLike style={{ marginRight: "2px" }} /> 赞
                             </CommentButton>
-                            <CommentButton className="left" onClick={handleOnClickReply}>
+                            <CommentButton
+                                className="left"
+                                onClick={handleOnClickReply}
+                            >
                                 <FaCommentAlt style={{ marginRight: "2px" }} />
                                 回复
                             </CommentButton>
@@ -84,21 +91,31 @@ function CommentItem(props) {
                             className={`right ${!mouseIn && "hide"}`}
                             onClick={handleOnClickReport}
                         >
-                            <RiAlarmWarningFill style={{ marginRight: "2px" }} />
+                            <RiAlarmWarningFill
+                                style={{ marginRight: "2px" }}
+                            />
                             举报
                         </CommentButton>
                     </div>
+                    <BreakLine
+                        className={`${
+                            props.eachComment.subComments.length === 0 &&
+                            "break-line"
+                        }`}
+                    />
+                    {props.eachComment.subComments.map((eachSubCom) => (
+                        <SubComment key={eachSubCom.id} comment={eachSubCom} setShowTextarea={handleOnClickReply}/>
+                    ))}
                     <CSSTransition
                         in={showTextarea}
                         timeout={200}
                         classNames={slideYTransition}
                         unmountOnExit
                     >
-                    <BasicTextArea handleOnclose={hideReplyTextarea}/>
+                        <BasicTextArea handleOnclose={hideReplyTextarea} />
                     </CSSTransition>
                 </CommentInfo>
             </div>
-            <SubComment />
         </CommentListContainer>
     );
 }
