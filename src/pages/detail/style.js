@@ -304,7 +304,7 @@ export const RecommendHeader = styled.div`
 `
 
 // footer section
-export const Footer = styled.footer`
+export const FooterWrapper = styled.footer`
   position: fixed;
   left: 0;
   right: 0;
@@ -319,7 +319,26 @@ export const Footer = styled.footer`
 `
 
 export const FooterCompose = styled.textarea`
-
+  width: 400px;
+  height: 36px;
+  &.slide-enter{
+    transition: all .2s ease-out;
+  }
+  &.slide-enter-active{
+    width: 560px;
+    height: 56px;
+  }
+  &.slide-enter-done{
+    width: 560px;
+    height: 56px;
+  }
+  &.slide-exit{
+    transition: all .2s ease-out;
+  }
+  &.slide-exit-active{
+    width: 400px;
+    height: 36px
+  } 
 `
 
 // message popup

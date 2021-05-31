@@ -19,6 +19,7 @@ import LikedUser from "./component/LikedUser";
 import SponseDialog from "./component/SponseDialog";
 import ReportDialog from "./component/ReportDialog";
 import CommentSection from "./component/CommentSection";
+import Footer from "./component/Footer";
 
 import {
     DetailWrapper,
@@ -38,8 +39,6 @@ import {
     BreakLine,
     WorkItem,
     RecommendHeader,
-    Footer,
-    FooterCompose,
     Mask,
 } from "./style";
 
@@ -409,7 +408,7 @@ function Detail() {
                             .slice(0, 3)
                             .map((work) => (
                                 <WorkItem key={work.id}>
-                                    <a href="">{work.title}</a>
+                                    <a href="/">{work.title}</a>
                                     <p>阅读{work.readTimes}</p>
                                 </WorkItem>
                             ))}
@@ -418,15 +417,13 @@ function Detail() {
                         <RecommendHeader>推荐阅读</RecommendHeader>
                         {detailState.recommendList.map((work) => (
                             <WorkItem key={work.id}>
-                                <a href="">{work.title}</a>
+                                <a href="/">{work.title}</a>
                                 <p>阅读{work.readTimes}</p>
                             </WorkItem>
                         ))}
                     </SideSection>
                 </SideWrapper>
-                <Footer>
-                    <FooterCompose type="text" placeholder="写下你的评论" />
-                </Footer>
+                <Footer />
                 {detailState.showScroll && (
                     <div>
                         <BackTop
