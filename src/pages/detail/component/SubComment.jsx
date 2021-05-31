@@ -9,9 +9,11 @@ import { actions } from "../store";
 
 import { CommentInfo, CommentButton, BreakLine } from "../style";
 
+const TOCOMMENT = "to-comment";
+const TOSUBCOMMENT = "to-subComment";
+
 function SubComment(props) {
     const [mouseIn, setMouseIn] = useState(false);
-    const [showTextarea, setShowTextarea] = useState(false);
 
     const { userInfo, time, content } = props.comment;
 
@@ -21,8 +23,18 @@ function SubComment(props) {
         dispatch(actions.openReportAction());
     };
 
-    const handleOnClickReply = () => {
+    const handleOnClickReply = (operation) => {
         props.setShowTextarea();
+        if(operation.type===TOSUBCOMMENT)
+            props.getReplyTarget(userInfo.name);
+    };
+
+    const handleOnMouseEnter = () => {
+        setMouseIn(true);
+    };
+
+    const handleOnMouseLeave = () => {
+        setMouseIn(false);
     };
 
     return (
@@ -49,11 +61,13 @@ function SubComment(props) {
             <p className="content">{content}</p>
             <div
                 className="operation"
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
             >
                 <div>
                     <CommentButton
                         className="left"
-                        onClick={handleOnClickReply}
+                        onClick={() => handleOnClickReply({type: TOSUBCOMMENT})}
                     >
                         <FaCommentAlt style={{ marginRight: "2px" }} />
                         回复
@@ -69,7 +83,7 @@ function SubComment(props) {
             </div>
             <BreakLine />
             <div className="operation">
-                <CommentButton className="left" onClick={handleOnClickReply}>
+                <CommentButton className="left" onClick={() => handleOnClickReply({type: TOCOMMENT})}>
                     <FiEdit3 style={{ marginRight: "2px" }}/>
                     添加新评论
                 </CommentButton>

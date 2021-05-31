@@ -25,6 +25,7 @@ import slideYTransition from "../../../transitions/slideY.module.css";
 function CommentItem(props) {
     const [mouseIn, setMouseIn] = useState(false);
     const [showTextarea, setShowTextarea] = useState(false);
+    const [replyTarget, setReplyTarget] = useState("");
 
     const dispatch = useDispatch();
 
@@ -46,7 +47,12 @@ function CommentItem(props) {
 
     const hideReplyTextarea = () => {
         setShowTextarea(false);
+        setReplyTarget("");
     };
+
+    const handleOnGetReplyTarget = (targetName) => {
+        setReplyTarget(targetName);
+    }
 
     return (
         <CommentListContainer key={props.eachComment.id}>
@@ -104,7 +110,12 @@ function CommentItem(props) {
                         }`}
                     />
                     {props.eachComment.subComments.map((eachSubCom) => (
-                        <SubComment key={eachSubCom.id} comment={eachSubCom} setShowTextarea={handleOnClickReply}/>
+                        <SubComment
+                            key={eachSubCom.id}
+                            comment={eachSubCom}
+                            setShowTextarea={handleOnClickReply}
+                            getReplyTarget={handleOnGetReplyTarget}
+                        />
                     ))}
                     <CSSTransition
                         in={showTextarea}
@@ -112,7 +123,7 @@ function CommentItem(props) {
                         classNames={slideYTransition}
                         unmountOnExit
                     >
-                        <BasicTextArea handleOnclose={hideReplyTextarea} />
+                        <BasicTextArea handleOnclose={hideReplyTextarea} initValue={replyTarget}/>
                     </CSSTransition>
                 </CommentInfo>
             </div>

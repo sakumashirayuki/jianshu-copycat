@@ -54,6 +54,7 @@ function BasicTextArea(props) {
 
     const handleOnCancel = () => {
         // hide the whole textarea
+        setTextContent("");
         props.handleOnclose();
     }
 
@@ -70,6 +71,13 @@ function BasicTextArea(props) {
             document.removeEventListener("keydown", keydownHandler);
         }
     });
+
+    useEffect(()=>{
+        if(props.initValue){
+            const atValue = "@" + props.initValue; 
+            setTextContent(atValue);
+        }
+    }, []);
 
     return (
         <div style={{ width: "100%", marginTop: "16px" }}>
