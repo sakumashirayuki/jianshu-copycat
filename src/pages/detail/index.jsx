@@ -55,7 +55,6 @@ function Detail() {
     let history = useHistory();
 
     const [mouseInState, setMouseInState] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
     const [showLikedUsers, setShowLikedUsers] = useState(false);
     const [showSponse, setShowSponse] = useState(false);
 
@@ -123,7 +122,7 @@ function Detail() {
             dispatch(actions.removePreferenceAction());
         } else if (detailState.preference === "dislike") {
             // alert
-            setShowMessage(true);
+            dispatch(actions.showMessageAction());
         } else {
             history.push("/login");
         }
@@ -137,7 +136,7 @@ function Detail() {
             dispatch(actions.removePreferenceAction());
         } else if (detailState.preference === "like") {
             // alert
-            setShowMessage(true);
+            dispatch(actions.showMessageAction());
         } else {
             history.push("/login");
         }
@@ -170,12 +169,12 @@ function Detail() {
     }, []);
 
     useEffect(() => {
-        if (showMessage) {
+        if (detailState.showMessage) {
             setTimeout(() => {
-                setShowMessage(false);
+                dispatch(actions.hideMessageAction());
             }, 3000);
         }
-    }, [showMessage]);
+    }, [detailState.showMessage]);
 
     return (
         <div>
@@ -203,7 +202,7 @@ function Detail() {
             )}
             <DetailWrapper>
                 <CSSTransition
-                    in={showMessage}
+                    in={detailState.showMessage}
                     timeout={300}
                     classNames="alert"
                     appear={false}

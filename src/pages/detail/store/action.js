@@ -7,6 +7,8 @@ export const DISLIKE = "dislike";
 export const REMOVEPREFERNCE = "remove_preference";
 export const OPENREPORT = "open_report";
 export const CLOSEREPORT = "close_report";
+export const OPENMESSAGE = "open_message";
+export const HIDEMESSAGE = "hide_message";
 
 const changeDetailAction = (result) => { // load the detail information
     return {
@@ -70,5 +72,17 @@ export const openReportAction = () => {
 export const closeReportAction = () => {
     return{
         type: CLOSEREPORT
+    };
+}
+
+export const showMessageAction = () => {
+    return{
+        type: OPENMESSAGE
+    };
+}
+
+export const hideMessageAction = () => {
+    return{
+        type: HIDEMESSAGE
     };
 }

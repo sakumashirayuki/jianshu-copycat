@@ -8,6 +8,8 @@ import {
     REMOVEPREFERNCE,
     OPENREPORT,
     CLOSEREPORT,
+    OPENMESSAGE,
+    HIDEMESSAGE
 } from "./action";
 
 const defaultState = {
@@ -20,6 +22,7 @@ const defaultState = {
     preference: "",
     showScroll: false,
     showReport: false,
+    showMessage: false,
     authorInfo: {
         name: "",
         imgUrl: "",
@@ -71,6 +74,12 @@ const homeReducer = produce((draft, action) => {
             break;
         case CLOSEREPORT:
             draft.showReport = false;
+            break;
+        case OPENMESSAGE:
+            draft.showMessage = true;
+            break;
+        case HIDEMESSAGE:
+            draft.showMessage = false;
             break;
     }
 }, defaultState);

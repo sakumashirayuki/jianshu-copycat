@@ -314,31 +314,52 @@ export const FooterWrapper = styled.footer`
   z-index: 100;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 10px 16px;
 `
 
 export const FooterCompose = styled.textarea`
   width: 400px;
   height: 36px;
+  margin-right: 16px;
+  resize: none;
+  padding: 8px 18px;
+  border-radius: 18px;
+  border: none;
+  background-color: #f2f2f2;
+  outline: none;
   &.slide-enter{
     transition: all .2s ease-out;
   }
   &.slide-enter-active{
     width: 560px;
     height: 56px;
+    padding-right: 80px;
+    border-radius: 4px;
   }
   &.slide-enter-done{
     width: 560px;
     height: 56px;
+    padding-right: 80px;
+    border-radius: 4px;
   }
   &.slide-exit{
     transition: all .2s ease-out;
   }
   &.slide-exit-active{
     width: 400px;
-    height: 36px
+    height: 36px;
   } 
+`
+
+export const FooterButton = styled.div`
+  margin-right: 24px;
+  cursor: pointer; 
+  display: flex;
+  align-items: center;
+  &.activate{
+    color: #ec7259;
+  }
 `
 
 // message popup

@@ -80,7 +80,7 @@ function CommentSection(props) {
     });
 
     return (
-        <CommentWrapper>
+        <CommentWrapper id="comments-section">
             <MainCommentCompose>
                 <img
                     src={props.avatarUrl}
