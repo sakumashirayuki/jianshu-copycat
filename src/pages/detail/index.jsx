@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Menu, Dropdown } from "antd";
 import "antd/dist/antd.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,6 +50,8 @@ function Detail() {
     const loginState = useSelector((state) => state.loginReducer);
     const userState = useSelector((state) => state.userReducer);
 
+    const refRecommend = useRef(null);
+
     const dispatch = useDispatch();
 
     let history = useHistory();
@@ -57,6 +59,9 @@ function Detail() {
     const [mouseInState, setMouseInState] = useState(false);
     const [showLikedUsers, setShowLikedUsers] = useState(false);
     const [showSponse, setShowSponse] = useState(false);
+    const [fixRecommend, setFixRecommend] = useState(false);
+    // const [originOffset, setOriginOffset] = useState(0); // get this when the component is mounted 
+    let originOffset = 0;
 
     const { SubMenu } = Menu;
 
@@ -98,11 +103,23 @@ function Detail() {
     };
 
     const changeScrollTopShow = () => {
+        // scrolltop function
         if (document.documentElement.scrollTop > 400) {
             // scroll down 400, show the backtop button
             dispatch(actions.toggleTopShowAction(true));
         } else {
             dispatch(actions.toggleTopShowAction(false));
+        }
+        // fix recommend function
+        const headerHeight = 58;
+        // it may change when the recommend area is fixed
+        if((window.scrollY + headerHeight) >= originOffset){
+            console.log("reach the recommend");
+            console.log("originOffset", originOffset);
+            setFixRecommend(true);
+        }else{
+            console.log("come back");
+            setFixRecommend(false);
         }
     };
 
@@ -166,6 +183,8 @@ function Detail() {
     useEffect(() => {
         dispatch(actions.getDetailAction());
         bindEvents();
+        originOffset = refRecommend.current.offsetTop;
+        console.log("originOffset in useEffect", originOffset);
     }, []);
 
     useEffect(() => {
@@ -412,7 +431,7 @@ function Detail() {
                                 </WorkItem>
                             ))}
                     </SideSection>
-                    <SideSection>
+                    <SideSection ref={refRecommend} className={`${fixRecommend && "fix"}`}>
                         <RecommendHeader>推荐阅读</RecommendHeader>
                         {detailState.recommendList.map((work) => (
                             <WorkItem key={work.id}>

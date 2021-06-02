@@ -273,6 +273,11 @@ export const SideSection = styled.div`
   border-radius: 4px;
   font-size: 16px;
   margin-bottom: 10px;
+  &.fix{
+    position: fixed;
+    top: 58px;
+    width: inherit;
+  }
 `
 
 export const BreakLine = styled.div`
