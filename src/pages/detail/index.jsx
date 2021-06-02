@@ -51,6 +51,7 @@ function Detail() {
     const userState = useSelector((state) => state.userReducer);
 
     const refRecommend = useRef(null);
+    const refTitle = useRef(null);
 
     const dispatch = useDispatch();
 
@@ -62,6 +63,7 @@ function Detail() {
     const [fixRecommend, setFixRecommend] = useState(false);
     // const [originOffset, setOriginOffset] = useState(0); // get this when the component is mounted 
     let originOffset = 0;
+    let titleOffset = 0; // offsetTop + offsetHeight;
 
     const { SubMenu } = Menu;
 
@@ -112,14 +114,20 @@ function Detail() {
         }
         // fix recommend function
         const headerHeight = 58;
-        // it may change when the recommend area is fixed
         if((window.scrollY + headerHeight) >= originOffset){
-            console.log("reach the recommend");
-            console.log("originOffset", originOffset);
             setFixRecommend(true);
         }else{
-            console.log("come back");
             setFixRecommend(false);
+        }
+        // switch header
+        if((window.scrollY ) >= titleOffset){
+            console.log("scroll length: ", window.scrollY);
+            console.log("title offset: ", titleOffset);
+            console.log("cross the title");
+            dispatch(actions.showTitleHeaderAction());
+        }else{
+            console.log("comeback");
+            dispatch(actions.showOriginHeaderAction());
         }
     };
 
@@ -184,8 +192,13 @@ function Detail() {
         dispatch(actions.getDetailAction());
         bindEvents();
         originOffset = refRecommend.current.offsetTop;
-        console.log("originOffset in useEffect", originOffset);
     }, []);
+
+    useEffect(() => {
+        console.log("useEffect offsetTop: ", refTitle.current.offsetTop);
+        console.log("useEffect clientHeight: ", refTitle.current.clientHeight);
+        titleOffset = refTitle.current.offsetTop + refTitle.current.clientHeight;
+    }, [refTitle.current]);
 
     useEffect(() => {
         if (detailState.showMessage) {
@@ -231,7 +244,7 @@ function Detail() {
                 </CSSTransition>
                 <Main>
                     <BlogWrapper>
-                        <Header>{detailState.title}</Header>
+                        <Header ref={refTitle}>{detailState.title}</Header>
                         <AuthorColumn>
                             <img
                                 src={detailState.authorInfo.imgUrl}

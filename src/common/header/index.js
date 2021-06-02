@@ -7,6 +7,8 @@ import "antd/dist/antd.css";
 
 import ListArea from "./component/ListArea";
 
+import DetailHeader from "../../pages/detail/component/DetailHeader";
+
 import {
     HeaderWrapper,
     Logo,
@@ -26,6 +28,7 @@ function Header() {
     const headerState = useSelector((state) => state.headerReducer);
     const loginState = useSelector((state) => state.loginReducer);
     const userState = useSelector((state) => state.userReducer);
+    const detailState = useSelector((state) => state.detailReducer);
 
     const dispatch = useDispatch();
 
@@ -100,83 +103,85 @@ function Header() {
     );
 
     return (
-        <HeaderWrapper>
-            <Link to="/">
-                <Logo />
-            </Link>
-            <Nav>
+        detailState.titleHeader ? <DetailHeader /> : (
+            <HeaderWrapper>
                 <Link to="/">
-                    <NavItem className="left active">
-                        <span className="iconfont">&#xe625;</span>首页
-                    </NavItem>
+                    <Logo />
                 </Link>
-                <NavItem className="left">
-                    <span className="iconfont">&#xe621;</span>下载App
-                </NavItem>
-                {loginState.login ? (
-                    <NavItem className="right" onClick={handleOnLogout}>
-                        退出
+                <Nav>
+                    <Link to="/">
+                        <NavItem className="left active">
+                            <span className="iconfont">&#xe625;</span>首页
+                        </NavItem>
+                    </Link>
+                    <NavItem className="left">
+                        <span className="iconfont">&#xe621;</span>下载App
                     </NavItem>
-                ) : (
-                    <Link to="/login">
-                        <NavItem className="right">登录</NavItem>
-                    </Link>
-                )}
-                <NavItem className="right">
-                    <span className="iconfont">&#xe636;</span>
-                </NavItem>
-                <SearchWrapper>
-                    <CSSTransition
-                        in={headerState.focused}
-                        timeout={300}
-                        classNames="slide"
-                    >
-                        <NavSearch
-                            onFocus={handleOnFocus}
-                            onBlur={handleOnBlur}
-                        />
-                    </CSSTransition>
-                    <span
-                        className={
-                            headerState.focused
-                                ? "focused iconfont zoom"
-                                : "iconfont zoom"
-                        }
-                    >
-                        &#xe637;
-                    </span>
-                    {(headerState.focused || headerState.mouseIn) && (
-                        <ListArea page={headerState.page} />
-                    )}
-                </SearchWrapper>
-                <Addition>
-                    <Link to="/write">
-                        <Button className="solid right" style={{minWidth: "100px"}}>
-                            <span className="iconfont">&#xe61c;</span> 写文章
-                        </Button>
-                    </Link>
                     {loginState.login ? (
-                      <div style={{float: "right", marginTop: "7px", marginRight: "15px"}}>
-                        <Dropdown overlay={menu} placement="bottomCenter">
-                            <img
-                                src={userState.avatarUrl}
-                                alt=""
-                                style={{
-                                    width: "40px",
-                                    height: "40px",
-                                    borderRadius: "50%",
-                                }}
-                            />
-                        </Dropdown>
-                      </div>
+                        <NavItem className="right" onClick={handleOnLogout}>
+                            退出
+                        </NavItem>
                     ) : (
-                        <Link to="/signup">
-                            <Button className="reg right">注册</Button>
+                        <Link to="/login">
+                            <NavItem className="right">登录</NavItem>
                         </Link>
                     )}
-                </Addition>
-            </Nav>
-        </HeaderWrapper>
+                    <NavItem className="right">
+                        <span className="iconfont">&#xe636;</span>
+                    </NavItem>
+                    <SearchWrapper>
+                        <CSSTransition
+                            in={headerState.focused}
+                            timeout={300}
+                            classNames="slide"
+                        >
+                            <NavSearch
+                                onFocus={handleOnFocus}
+                                onBlur={handleOnBlur}
+                            />
+                        </CSSTransition>
+                        <span
+                            className={
+                                headerState.focused
+                                    ? "focused iconfont zoom"
+                                    : "iconfont zoom"
+                            }
+                        >
+                            &#xe637;
+                        </span>
+                        {(headerState.focused || headerState.mouseIn) && (
+                            <ListArea page={headerState.page} />
+                        )}
+                    </SearchWrapper>
+                    <Addition>
+                        <Link to="/write">
+                            <Button className="solid right" style={{minWidth: "100px"}}>
+                                <span className="iconfont">&#xe61c;</span> 写文章
+                            </Button>
+                        </Link>
+                        {loginState.login ? (
+                        <div style={{float: "right", marginTop: "7px", marginRight: "15px"}}>
+                            <Dropdown overlay={menu} placement="bottomCenter">
+                                <img
+                                    src={userState.avatarUrl}
+                                    alt=""
+                                    style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        borderRadius: "50%",
+                                    }}
+                                />
+                            </Dropdown>
+                        </div>
+                        ) : (
+                            <Link to="/signup">
+                                <Button className="reg right">注册</Button>
+                            </Link>
+                        )}
+                    </Addition>
+                </Nav>
+            </HeaderWrapper>
+        )
     );
 }
 export default Header;

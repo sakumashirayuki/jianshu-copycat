@@ -9,6 +9,8 @@ export const OPENREPORT = "open_report";
 export const CLOSEREPORT = "close_report";
 export const OPENMESSAGE = "open_message";
 export const HIDEMESSAGE = "hide_message";
+export const SWITCHTITLEHEADERON = "switch_title_header_on";
+export const SWITCHTITLEHEADEROFF = "switch_title_header_off";
 
 const changeDetailAction = (result) => { // load the detail information
     return {
@@ -86,3 +88,15 @@ export const hideMessageAction = () => {
         type: HIDEMESSAGE
     };
 }
+
+export const showTitleHeaderAction = () => {
+    return{
+        type: SWITCHTITLEHEADERON
+    };
+};
+
+export const showOriginHeaderAction = () => {
+    return{
+        type: SWITCHTITLEHEADEROFF
+    };
+};

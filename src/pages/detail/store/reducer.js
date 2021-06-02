@@ -9,7 +9,9 @@ import {
     OPENREPORT,
     CLOSEREPORT,
     OPENMESSAGE,
-    HIDEMESSAGE
+    HIDEMESSAGE,
+    SWITCHTITLEHEADERON,
+    SWITCHTITLEHEADEROFF
 } from "./action";
 
 const defaultState = {
@@ -23,6 +25,7 @@ const defaultState = {
     showScroll: false,
     showReport: false,
     showMessage: false,
+    titleHeader: false,
     authorInfo: {
         name: "",
         imgUrl: "",
@@ -80,6 +83,12 @@ const homeReducer = produce((draft, action) => {
             break;
         case HIDEMESSAGE:
             draft.showMessage = false;
+            break;
+        case SWITCHTITLEHEADERON:
+            draft.titleHeader = true;
+            break;
+        case SWITCHTITLEHEADEROFF:
+            draft.titleHeader = false;
             break;
     }
 }, defaultState);
