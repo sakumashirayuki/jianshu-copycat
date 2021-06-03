@@ -59,9 +59,8 @@ function Detail() {
 
     const [mouseInState, setMouseInState] = useState(false);
     const [showLikedUsers, setShowLikedUsers] = useState(false);
-    const [showSponse, setShowSponse] = useState(false);
     const [fixRecommend, setFixRecommend] = useState(false);
-    // const [originOffset, setOriginOffset] = useState(0); // get this when the component is mounted 
+    // const [originOffset, setOriginOffset] = useState(0); // get this when the component is mounted
     let originOffset = 0;
     let titleOffset = 0; // offsetTop + offsetHeight;
 
@@ -114,15 +113,15 @@ function Detail() {
         }
         // fix recommend function
         const headerHeight = 58;
-        if((window.scrollY + headerHeight) >= originOffset){
+        if (window.scrollY + headerHeight >= originOffset) {
             setFixRecommend(true);
-        }else{
+        } else {
             setFixRecommend(false);
         }
         // switch header
-        if((window.scrollY ) >= titleOffset){
+        if (window.scrollY >= titleOffset) {
             dispatch(actions.showTitleHeaderAction());
-        }else{
+        } else {
             dispatch(actions.showOriginHeaderAction());
         }
     };
@@ -168,7 +167,7 @@ function Detail() {
     };
 
     const handleOnClickSponse = () => {
-        setShowSponse(true);
+        dispatch(actions.openSponseAction());
     };
 
     const closeModal = (name) => {
@@ -177,7 +176,7 @@ function Detail() {
                 setShowLikedUsers(false);
                 break;
             case "sponseDialog":
-                setShowSponse(false);
+                dispatch(actions.hideSponseAction());
                 break;
             default:
                 break;
@@ -191,7 +190,8 @@ function Detail() {
     }, []);
 
     useEffect(() => {
-        titleOffset = refTitle.current.offsetTop + refTitle.current.clientHeight;
+        titleOffset =
+            refTitle.current.offsetTop + refTitle.current.clientHeight;
     }, [refTitle.current]);
 
     useEffect(() => {
@@ -213,7 +213,7 @@ function Detail() {
                     />
                 </Mask>
             )}
-            {showSponse && (
+            {detailState.showSponse && (
                 <Mask>
                     <SponseDialog
                         handleOnClose={closeModal}
@@ -246,7 +246,9 @@ function Detail() {
                             />
                             <AuthorDescribe>
                                 <div className="name">
-                                    <p>{detailState.authorInfo.name}</p>
+                                    <p style={{ lineHeight: "25px" }}>
+                                        {detailState.authorInfo.name}
+                                    </p>
                                     <a
                                         href="/"
                                         className="follow"
@@ -368,7 +370,7 @@ function Detail() {
                             />
                             <AuthorDescribe>
                                 <div className="name">
-                                    <p>{detailState.authorInfo.name}</p>
+                                    <p style={{ lineHeight: "25px" }}>{detailState.authorInfo.name}</p>
                                     <a
                                         href="/"
                                         className="follow"
@@ -398,7 +400,10 @@ function Detail() {
                             </AuthorDescribe>
                         </AuthorColumn>
                     </BlogWrapper>
-                    <CommentSection avatarUrl={userState.avatarUrl} comments={detailState.comments}/>
+                    <CommentSection
+                        avatarUrl={userState.avatarUrl}
+                        comments={detailState.comments}
+                    />
                 </Main>
                 <SideWrapper>
                     <SideSection>
@@ -438,7 +443,10 @@ function Detail() {
                                 </WorkItem>
                             ))}
                     </SideSection>
-                    <SideSection ref={refRecommend} className={`${fixRecommend && "fix"}`}>
+                    <SideSection
+                        ref={refRecommend}
+                        className={`${fixRecommend && "fix"}`}
+                    >
                         <RecommendHeader>推荐阅读</RecommendHeader>
                         {detailState.recommendList.map((work) => (
                             <WorkItem key={work.id}>

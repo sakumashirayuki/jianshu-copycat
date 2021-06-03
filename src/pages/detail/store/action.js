@@ -7,6 +7,8 @@ export const DISLIKE = "dislike";
 export const REMOVEPREFERNCE = "remove_preference";
 export const OPENREPORT = "open_report";
 export const CLOSEREPORT = "close_report";
+export const OPENSPONSE = "open_sponse";
+export const HIDESPONSE = "hide_sponse";
 export const OPENMESSAGE = "open_message";
 export const HIDEMESSAGE = "hide_message";
 export const SWITCHTITLEHEADERON = "switch_title_header_on";
@@ -76,6 +78,18 @@ export const closeReportAction = () => {
         type: CLOSEREPORT
     };
 }
+
+export const openSponseAction = () => {
+    return{
+        type: OPENSPONSE
+    };
+};
+
+export const hideSponseAction = () => {
+    return{
+        type: HIDESPONSE
+    };
+};
 
 export const showMessageAction = () => {
     return{

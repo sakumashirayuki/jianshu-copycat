@@ -1,16 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Button } from "../../../common/header/style";
 import { TitleHeader } from "../style";
 
-import { action } from "../store";
+import { actions } from "../store";
 
 function DetailHeader() {
     const detailState = useSelector((state) => state.detailReducer);
 
-    const handleOnClickSponse = () => {
+    const dispatch = useDispatch();
 
+    const handleOnClickSponse = () => {
+        dispatch(actions.openSponseAction());
     }
 
     return (

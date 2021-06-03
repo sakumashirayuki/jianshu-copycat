@@ -122,7 +122,7 @@ function SponseDialog(props) {
                     }}
                 ></textarea>
                 <div>
-                    <p style={{ textAlign: "center" }}>选择支付方式</p>
+                    <p style={{ textAlign: "center", margin: "12px 0" }}>选择支付方式</p>
                     <SponseSelection>
                         <SponseOption
                             className={`${

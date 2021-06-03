@@ -8,6 +8,8 @@ import {
     REMOVEPREFERNCE,
     OPENREPORT,
     CLOSEREPORT,
+    OPENSPONSE,
+    HIDESPONSE,
     OPENMESSAGE,
     HIDEMESSAGE,
     SWITCHTITLEHEADERON,
@@ -24,6 +26,7 @@ const defaultState = {
     preference: "",
     showScroll: false,
     showReport: false,
+    showSponse: false,
     showMessage: false,
     titleHeader: false,
     authorInfo: {
@@ -77,6 +80,12 @@ const homeReducer = produce((draft, action) => {
             break;
         case CLOSEREPORT:
             draft.showReport = false;
+            break;
+        case OPENSPONSE:
+            draft.showSponse = true;
+            break;
+        case HIDESPONSE:
+            draft.showSponse = false;
             break;
         case OPENMESSAGE:
             draft.showMessage = true;
