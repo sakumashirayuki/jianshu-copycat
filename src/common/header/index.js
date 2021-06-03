@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { CSSTransition } from "react-transition-group";
 import { Menu, Dropdown } from "antd";
@@ -31,6 +31,9 @@ function Header() {
     const detailState = useSelector((state) => state.detailReducer);
 
     const dispatch = useDispatch();
+
+    const location = useLocation();
+    const path = location.pathname;
 
     const handleOnFocus = function () {
         dispatch(actions.searchFocusAction());
@@ -103,8 +106,8 @@ function Header() {
     );
 
     return (
-        detailState.titleHeader ? <DetailHeader /> : (
-            <HeaderWrapper>
+        <HeaderWrapper className={`${detailState.titleHeader && path.match(/^\/detail/) && "down"}`}>
+            <div className="main-header">
                 <Link to="/">
                     <Logo />
                 </Link>
@@ -180,8 +183,9 @@ function Header() {
                         )}
                     </Addition>
                 </Nav>
-            </HeaderWrapper>
-        )
+            </div>
+            <DetailHeader />
+        </HeaderWrapper>
     );
 }
 export default Header;

@@ -121,12 +121,8 @@ function Detail() {
         }
         // switch header
         if((window.scrollY ) >= titleOffset){
-            console.log("scroll length: ", window.scrollY);
-            console.log("title offset: ", titleOffset);
-            console.log("cross the title");
             dispatch(actions.showTitleHeaderAction());
         }else{
-            console.log("comeback");
             dispatch(actions.showOriginHeaderAction());
         }
     };
@@ -195,8 +191,6 @@ function Detail() {
     }, []);
 
     useEffect(() => {
-        console.log("useEffect offsetTop: ", refTitle.current.offsetTop);
-        console.log("useEffect clientHeight: ", refTitle.current.clientHeight);
         titleOffset = refTitle.current.offsetTop + refTitle.current.clientHeight;
     }, [refTitle.current]);
 

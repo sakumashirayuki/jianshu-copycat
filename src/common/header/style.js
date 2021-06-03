@@ -10,6 +10,18 @@ export const HeaderWrapper = styled.div`
     font-weight: 500;
     background: #fff;
     z-index: 1000;
+    overflow: hidden;
+    .main-header, .title-header{
+        transition: transform .3s cubic-bezier(.645,.045,.355,1);
+    }
+    &.down{
+        .main-header{
+            transform: translateY(-100%);
+        }
+        .title-header{
+            transform: translateY(-100%);
+        }
+    }
 `;
 
 export const Logo = styled.div`
@@ -25,7 +37,7 @@ export const Logo = styled.div`
 
 export const Nav = styled.div`
     width: 945px;
-    height: 100%;
+    height: 58px;
     margin: 0 auto;
     @media (max-width: 1280px){
         width: 800px;
@@ -166,11 +178,10 @@ export const Addition = styled.div`
     top: 0;
     height: 56px;
 `
-
+// width: 80px;
 export const Button = styled.div`
     &.reg{
         color: #ea6f5a;
-        width: 80px;
         border-color: #ea6f5a;
     }
     &.solid{

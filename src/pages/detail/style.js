@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+// use detail title as header
+export const TitleHeader = styled.div`
+  width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 58px;
+`
+
 export const DetailWrapper = styled.div`
   display: flex;
   justify-content: center;
