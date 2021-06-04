@@ -1,36 +1,50 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import ReactMde from "react-mde";
 import ReactMarkdown from "react-markdown";
+import "react-mde/lib/styles/css/react-mde-all.css";
+
+import "./styles.css";
 
 import {
     WriteWrapper,
     CatalogWrapper,
     EditWrapper,
-    PreviewWrapper,
+    EditorContainer,
+    ListWrapper,
 } from "./style";
 
 function Write() {
-    const loginState = useSelector((state) => state.loginReducer);
+    const [value, setValue] = useState("**Hello world!!!**");
+    const [selectedTab, setSelectedTab] = useState("write");
 
-    const [markdown, setMarkdown] = useState("## markdown preview");
-    const handleChange = (e) => {
-        setMarkdown(e.target.value);
-    };
+    const loginState = useSelector((state) => state.loginReducer);
 
     if (loginState.login) {
         return (
             <WriteWrapper>
-                <CatalogWrapper>hello</CatalogWrapper>
+                <CatalogWrapper>set list</CatalogWrapper>
+                <ListWrapper>blog list</ListWrapper>
                 <EditWrapper>
-                    <textarea
-                        value={markdown}
-                        onChange={handleChange}
-                    ></textarea>
+                    <input type="text"/>
+                    <EditorContainer>
+                        <ReactMde
+                            value={value}
+                            onChange={setValue}
+                            selectedTab={selectedTab}
+                            onTabChange={setSelectedTab}
+                            generateMarkdownPreview={(markdown) =>
+                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                            }
+                            childProps={{
+                                writeButton: {
+                                    tabIndex: -1
+                                }
+                            }}
+                        />
+                    </EditorContainer>
                 </EditWrapper>
-                <PreviewWrapper>
-                    <ReactMarkdown>{markdown}</ReactMarkdown>
-                </PreviewWrapper>
             </WriteWrapper>
         );
     } else {
