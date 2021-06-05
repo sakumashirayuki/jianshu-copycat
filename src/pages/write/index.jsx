@@ -5,12 +5,14 @@ import ReactMde from "react-mde";
 import ReactMarkdown from "react-markdown";
 import "react-mde/lib/styles/css/react-mde-all.css";
 
+import Catalog from "./component/Catalog";
+
 import "./styles.css";
 
 import {
     WriteWrapper,
-    CatalogWrapper,
     EditWrapper,
+    EditTitle,
     EditorContainer,
     ListWrapper,
 } from "./style";
@@ -24,10 +26,10 @@ function Write() {
     if (loginState.login) {
         return (
             <WriteWrapper>
-                <CatalogWrapper>set list</CatalogWrapper>
+                <Catalog />
                 <ListWrapper>blog list</ListWrapper>
                 <EditWrapper>
-                    <input type="text"/>
+                    <EditTitle type="text"/>
                     <EditorContainer>
                         <ReactMde
                             value={value}
@@ -35,7 +37,7 @@ function Write() {
                             selectedTab={selectedTab}
                             onTabChange={setSelectedTab}
                             generateMarkdownPreview={(markdown) =>
-                            Promise.resolve(<ReactMarkdown source={markdown} />)
+                                Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
                             }
                             childProps={{
                                 writeButton: {

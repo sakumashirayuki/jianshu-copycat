@@ -9,9 +9,11 @@ export const WriteWrapper = styled.div`
 export const CatalogWrapper = styled.div`
     background-color: #404040;
     color: #f2f2f2;
-    padding: 4rem;
     grid-column-start: 1;
     grid-column-end: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const ListWrapper = styled.div`
@@ -26,8 +28,20 @@ export const EditWrapper = styled.div`
     grid-column-end: 4;
 `;
 
+export const EditTitle = styled.input`
+    width: 100%;
+    padding: 20px 80px 10px 40px;
+    border: none;
+    border: none;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #595959;
+    outline: none;
+`;
+
 export const EditorContainer = styled.div`
     textarea{
-        height: calc(100vh - 65px);
+        height: calc(100vh - 113px);
     }
-`
+`;
