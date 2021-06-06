@@ -16,6 +16,37 @@ export const CatalogWrapper = styled.div`
     justify-content: space-between;
 `;
 
+export const CatalogItem = styled.li`
+    line-height: 40px;
+    font-size: 15px;
+    padding: 0 15px;
+    cursor: pointer;
+    position: relative;
+    &.active{
+        background-color: #666;
+        border-left: 3px solid #ec7259;
+        .setting-icon{
+            visibility: visible;
+        }
+    }
+    &:hover{
+        background-color: #666;
+    }
+    .setting-icon{
+        visibility: hidden;
+    }
+`;
+
+export const CatalogFooter = styled.footer`
+    display: flex;
+    justify-content: space-between;
+    color: #999;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+    font-size: 17px;
+`;
+
 export const ListWrapper = styled.div`
     padding: 4rem;
     grid-column-start: 2;

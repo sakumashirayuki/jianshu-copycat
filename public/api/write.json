@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "data": {
+        "catalogList": [
+            {
+                "id": 1,
+                "name": "日记"
+            },
+            {
+                "id": 2,
+                "name": "随笔"
+            }
+        ]
+    }
+}
