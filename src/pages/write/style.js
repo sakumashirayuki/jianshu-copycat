@@ -65,6 +65,19 @@ export const BlogItem = styled.li`
     .title{
         font-size: 18px;
     }
+    .setting-icon{
+        visibility: hidden;
+    }
+    &:hover{
+        background-color: #e6e6e6;
+    }
+    &.active{
+        background-color: #e6e6e6;
+        border-left: 5px solid #ec7259;
+        .setting-icon{
+            visibility: visible;
+        }
+    }
 `;
 
 export const LeftIcon = styled.div`
@@ -73,7 +86,13 @@ export const LeftIcon = styled.div`
     left: 22px;
     font-size: 28px;
     color: #999;
-`
+`;
+
+export const RightIcon = styled.div`
+    position: absolute;
+    top: 36px;
+    right: 22px;
+`;
 
 export const CreateNew = styled.div`
     line-height: 30px;

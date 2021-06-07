@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const LOADWRITE = "load_write"; // load write page data
 export const SELECTCATALOGITEM = "select_catalog_item";
+export const SELECTBLOGITEM = "select_blog_item";
 
 const loadWriteAction = (data) => {
     return {
@@ -28,3 +29,10 @@ export const selectCatalogAction = (index) => {
         selectedCatId: index
     };
 };
+
+export const selectBlogAction = (index) => {
+    return{
+        type: SELECTBLOGITEM,
+        selectedBlogId: index
+    }
+}

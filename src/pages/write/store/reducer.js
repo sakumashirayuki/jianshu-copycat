@@ -1,10 +1,11 @@
 import { original, produce } from "immer";
 
-import { LOADWRITE, SELECTCATALOGITEM } from "./action";
+import { LOADWRITE, SELECTCATALOGITEM, SELECTBLOGITEM } from "./action";
 
 const defaultState = {
     catalogList: [],
-    selectedCatId: 0
+    selectedCatId: 0,
+    selectedBlogId: 0
 };
 
 const writeReducer = produce((draft, action)=>{
@@ -14,6 +15,9 @@ const writeReducer = produce((draft, action)=>{
             break;
         case SELECTCATALOGITEM:
             draft.selectedCatId = action.selectedCatId
+            break;
+        case SELECTBLOGITEM:
+            draft.selectedBlogId = action.selectedBlogId;
             break;
     }
 }, defaultState);

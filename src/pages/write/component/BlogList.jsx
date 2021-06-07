@@ -1,13 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { IoAddCircle } from "react-icons/io5";
-import { AiFillFile } from "react-icons/ai";
+import { AiFillFile, AiFillSetting } from "react-icons/ai";
 
-import { ListWrapper, BlogItem, LeftIcon, CreateNew } from "../style";
+import { actions } from "../store";
+
+import {
+    ListWrapper,
+    BlogItem,
+    LeftIcon,
+    RightIcon,
+    CreateNew,
+} from "../style";
 
 function BlogList() {
     const writeState = useSelector((state) => state.writeReducer);
+
+    const dispatch = useDispatch();
+
+    const handleOnClickBlogItem = (index) => {
+        dispatch(actions.selectBlogAction(index));
+    }
+
     return (
         <ListWrapper>
             <div
@@ -26,11 +41,21 @@ function BlogList() {
             <ul>
                 {writeState.catalogList.length &&
                     writeState.catalogList[writeState.selectedCatId].list.map(
-                        (item) => (
-                            <BlogItem key={item.id} className="bottom-line">
+                        (item, index) => (
+                            <BlogItem
+                                key={item.id}
+                                className={`bottom-line ${
+                                    index === writeState.selectedBlogId &&
+                                    "active"
+                                }`}
+                                onClick={() => handleOnClickBlogItem(index)}
+                            >
                                 <LeftIcon>
                                     <AiFillFile />
                                 </LeftIcon>
+                                <RightIcon className="setting-icon">
+                                    <AiFillSetting />
+                                </RightIcon>
                                 <span className="title">{item.title}</span>
                             </BlogItem>
                         )
@@ -43,9 +68,7 @@ function BlogList() {
                 >
                     &#xe60d;
                 </span>
-                <span>
-                    在下方新建文章
-                </span>
+                <span>在下方新建文章</span>
             </CreateNew>
         </ListWrapper>
     );
