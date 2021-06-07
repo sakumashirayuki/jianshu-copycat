@@ -10,6 +10,7 @@ import { actions } from "./store"
 import { MdPublish } from "react-icons/md";
 
 import Catalog from "./component/Catalog";
+import BlogList from "./component/BlogList";
 
 import "./styles.css";
 
@@ -18,7 +19,6 @@ import {
     EditWrapper,
     EditTitle,
     EditorContainer,
-    ListWrapper,
 } from "./style";
 
 const saveCommand = {
@@ -44,7 +44,7 @@ const publishCommand = {
 }
 
 function Write() {
-    const [value, setValue] = useState("**Hello world!!!**");
+    const [value, setValue] = useState("**Hello world!!!**\n\nwhat a beautiful day!");
     const [selectedTab, setSelectedTab] = useState("write");
 
     const loginState = useSelector((state) => state.loginReducer);
@@ -59,7 +59,7 @@ function Write() {
         return (
             <WriteWrapper>
                 <Catalog />
-                <ListWrapper>blog list</ListWrapper>
+                <BlogList />
                 <EditWrapper>
                     <EditTitle type="text"/>
                     <EditorContainer>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const WriteWrapper = styled.div`
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr;
+    grid-template-columns: 0.8fr 1fr 4fr;
 `;
 
 export const CatalogWrapper = styled.div`
@@ -48,11 +48,40 @@ export const CatalogFooter = styled.footer`
 `;
 
 export const ListWrapper = styled.div`
-    padding: 4rem;
     grid-column-start: 2;
     grid-column-end: 3;
     overflow-y: scroll;
+    .bottom-line{
+        border-bottom: 1px solid #d9d9d9;
+    }
 `;
+
+export const BlogItem = styled.li`
+    position: relative;
+    height: 90px;
+    color: #595959;
+    padding: 15px 10px 15px 60px;
+    cursor: pointer;
+    .title{
+        font-size: 18px;
+    }
+`;
+
+export const LeftIcon = styled.div`
+    position: absolute;
+    top: 30px;
+    left: 22px;
+    font-size: 28px;
+    color: #999;
+`
+
+export const CreateNew = styled.div`
+    line-height: 30px;
+    padding: 20px 0 20px 25px;
+    cursor: pointer;
+    color: #999;
+    margin-bottom: 80px;
+`
 
 export const EditWrapper = styled.div`
     grid-column-start: 3;
