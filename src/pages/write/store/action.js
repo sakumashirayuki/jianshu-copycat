@@ -3,6 +3,8 @@ import axios from "axios";
 export const LOADWRITE = "load_write"; // load write page data
 export const SELECTCATALOGITEM = "select_catalog_item";
 export const SELECTBLOGITEM = "select_blog_item";
+export const CHANGEBLOGCONTENT = "change_blog_content";
+export const CHANGEBLOGTITLE = "change_blog_title";
 
 const loadWriteAction = (data) => {
     return {
@@ -34,5 +36,19 @@ export const selectBlogAction = (index) => {
     return{
         type: SELECTBLOGITEM,
         selectedBlogId: index
-    }
-}
+    };
+};
+
+export const changeContentAction = (newContent) => {
+    return{
+        type: CHANGEBLOGCONTENT,
+        newContent
+    };
+};
+
+export const changeTitleAction = (newTitle) => {
+    return{
+        type: CHANGEBLOGTITLE,
+        newTitle
+    };
+};

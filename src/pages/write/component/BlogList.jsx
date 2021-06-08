@@ -57,6 +57,7 @@ function BlogList() {
                                     <AiFillSetting />
                                 </RightIcon>
                                 <span className="title">{item.title}</span>
+                                <span>{item.content.length <= 13 ? item.content : item.content.substring(0, 14) + "..."}</span>
                             </BlogItem>
                         )
                     )}

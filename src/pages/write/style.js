@@ -62,6 +62,10 @@ export const BlogItem = styled.li`
     color: #595959;
     padding: 15px 10px 15px 60px;
     cursor: pointer;
+    span{
+        display: block;
+        line-height: 30px;
+    }
     .title{
         font-size: 18px;
     }
