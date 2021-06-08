@@ -128,3 +128,17 @@ export const EditorContainer = styled.div`
         height: calc(100vh - 113px);
     }
 `;
+
+export const PlainEditor = styled.div`
+    height: 100vh;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span{
+        font-size: 64px;
+        color: #e6e6e6;
+        text-shadow: 0 1px 0 #fff;
+        vertical-align: middle;
+    }
+`

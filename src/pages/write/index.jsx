@@ -14,7 +14,7 @@ import BlogList from "./component/BlogList";
 
 import "./styles.css";
 
-import { WriteWrapper, EditWrapper, EditTitle, EditorContainer } from "./style";
+import { WriteWrapper, EditWrapper, EditTitle, EditorContainer, PlainEditor } from "./style";
 
 const saveCommand = {
     name: "save-command",
@@ -50,8 +50,9 @@ function Write() {
     };
 
     const handleOnChangeTitle = (e) => {
+        // debounce(()=>dispatch(actions.changeTitleAction(e.target.value)), 100);
         dispatch(actions.changeTitleAction(e.target.value));
-    }
+    };
 
     useEffect(() => {
         dispatch(actions.getWriteAction());
@@ -63,51 +64,66 @@ function Write() {
                 <Catalog />
                 <BlogList />
                 <EditWrapper>
-                    <EditTitle
-                        type="text"
-                        value={
-                            writeState.catalogList[writeState.selectedCatId]
-                                .list.length
-                                ? writeState.catalogList[
-                                      writeState.selectedCatId
-                                  ].list[writeState.selectedBlogId].title
-                                : ""
-                        }
-                        onChange={handleOnChangeTitle}
-                    />
-                    <EditorContainer>
-                        <ReactMde
-                            commands={{
-                                save: saveCommand,
-                                publish: publishCommand,
-                            }}
-                            toolbarCommands={[
-                                ...getDefaultToolbarCommands(),
-                                ["save", "publish"],
-                            ]}
-                            value={
-                                writeState.catalogList[writeState.selectedCatId]
-                                    .list.length
-                                    ? writeState.catalogList[
-                                          writeState.selectedCatId
-                                      ].list[writeState.selectedBlogId].content
-                                    : ""
-                            }
-                            onChange={setValue}
-                            selectedTab={selectedTab}
-                            onTabChange={setSelectedTab}
-                            generateMarkdownPreview={(markdown) =>
-                                Promise.resolve(
-                                    <ReactMarkdown>{markdown}</ReactMarkdown>
-                                )
-                            }
-                            childProps={{
-                                writeButton: {
-                                    tabIndex: -1,
-                                },
-                            }}
-                        />
-                    </EditorContainer>
+                    {writeState.catalogList[writeState.selectedCatId].list
+                        .length ? (
+                        <div>
+                            <EditTitle
+                                type="text"
+                                value={
+                                    writeState.catalogList[
+                                        writeState.selectedCatId
+                                    ].list.length
+                                        ? writeState.catalogList[
+                                              writeState.selectedCatId
+                                          ].list[writeState.selectedBlogId]
+                                              .title
+                                        : ""
+                                }
+                                onChange={handleOnChangeTitle}
+                            />
+                            <EditorContainer>
+                                <ReactMde
+                                    commands={{
+                                        save: saveCommand,
+                                        publish: publishCommand,
+                                    }}
+                                    toolbarCommands={[
+                                        ...getDefaultToolbarCommands(),
+                                        ["save", "publish"],
+                                    ]}
+                                    value={
+                                        writeState.catalogList[
+                                            writeState.selectedCatId
+                                        ].list.length
+                                            ? writeState.catalogList[
+                                                  writeState.selectedCatId
+                                              ].list[writeState.selectedBlogId]
+                                                  .content
+                                            : ""
+                                    }
+                                    onChange={setValue}
+                                    selectedTab={selectedTab}
+                                    onTabChange={setSelectedTab}
+                                    generateMarkdownPreview={(markdown) =>
+                                        Promise.resolve(
+                                            <ReactMarkdown>
+                                                {markdown}
+                                            </ReactMarkdown>
+                                        )
+                                    }
+                                    childProps={{
+                                        writeButton: {
+                                            tabIndex: -1,
+                                        },
+                                    }}
+                                />
+                            </EditorContainer>
+                        </div>
+                    ) : (
+                        <PlainEditor>
+                            <span>简书</span>
+                        </PlainEditor>
+                    )}
                 </EditWrapper>
             </WriteWrapper>
         );
