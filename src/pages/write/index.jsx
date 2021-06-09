@@ -36,6 +36,15 @@ const publishCommand = {
     },
 };
 
+const darkThemeEditor = {
+    main: "#3d3d3d",
+    fontColor: "#b3b3b3",
+    headerColor: "#fff",
+    headerBack: "#262626",
+    border: "#262626",
+    buttonColor: "#fff"
+}
+
 function Write() {
     // const [value, setValue] = useState("**Hello world!!!**\n\nwhat a beautiful day!");
     const [selectedTab, setSelectedTab] = useState("write");
@@ -80,8 +89,9 @@ function Write() {
                                         : ""
                                 }
                                 onChange={handleOnChangeTitle}
+                                theme={writeState.theme==="dark" && darkThemeEditor}
                             />
-                            <EditorContainer>
+                            <EditorContainer theme={writeState.theme==="dark" && darkThemeEditor}>
                                 <ReactMde
                                     commands={{
                                         save: saveCommand,

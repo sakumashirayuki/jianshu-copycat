@@ -150,15 +150,49 @@ export const EditTitle = styled.input`
     font-size: 30px;
     font-weight: 400;
     line-height: 30px;
-    color: #595959;
+    color: ${props => props.theme.fontColor};
+    background-color: ${props => props.theme.main};
     outline: none;
 `;
+EditTitle.defaultProps = {
+    theme:{
+        main: "#fff",
+        fontColor: "#595959"
+    }
+}
 
 export const EditorContainer = styled.div`
+    .react-mde{
+        color: ${props => props.theme.headerColor};
+        border: 1px solid ${props => props.theme.border};
+    }
+    .mde-header{
+        border-bottom: 1px solid ${props => props.theme.border};
+        background: ${props => props.theme.headerBack};
+    }
+    .svg-icon{
+        color: ${props => props.theme.buttonColor};
+    }
+    .mde-preview{
+        background-color: ${props => props.theme.main};
+        color: ${props => props.theme.fontColor};
+    }
     textarea{
         height: calc(100vh - 113px);
+        background-color: ${props => props.theme.main};
+        color: ${props => props.theme.fontColor};
     }
 `;
+EditorContainer.defaultProps={
+    theme:{
+        main: "#fff",
+        fontColor: "#595959",
+        headerColor: "rgba(0, 0, 0, 0.85)",
+        headerBack: "#f9f9f9",
+        border: "#c8ccd0",
+        buttonColor: "#242729"
+    }
+}
 
 export const PlainEditor = styled.div`
     height: 100vh;

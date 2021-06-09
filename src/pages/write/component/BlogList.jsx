@@ -35,7 +35,7 @@ function BlogList() {
     }
 
     return (
-        <ListWrapper theme={writeState.theme==="dark"&&darkThemeBackground}>
+        <ListWrapper theme={writeState.theme==="dark" && darkThemeBackground}>
             <CreateTop className="bottom-line">
                 <IoAddCircle />
                 <span>新建文章</span>
@@ -51,7 +51,7 @@ function BlogList() {
                                     "active"
                                 }`}
                                 onClick={() => handleOnClickBlogItem(index)}
-                                theme={writeState.theme==="dark"&&darkThemeItem}
+                                theme={writeState.theme==="dark" && darkThemeItem}
                             >
                                 <LeftIcon>
                                     <AiFillFile />
