@@ -5,13 +5,15 @@ import {
     SELECTCATALOGITEM,
     SELECTBLOGITEM,
     CHANGEBLOGCONTENT,
-    CHANGEBLOGTITLE
+    CHANGEBLOGTITLE,
+    CHANGETHEME
 } from "./action";
 
 const defaultState = {
     catalogList: [],
     selectedCatId: 0,
     selectedBlogId: 0,
+    theme: "basic"
 };
 
 const writeReducer = produce((draft, action) => {
@@ -30,6 +32,9 @@ const writeReducer = produce((draft, action) => {
             break;
         case CHANGEBLOGTITLE:
             draft.catalogList[draft.selectedCatId].list[draft.selectedBlogId].title = action.newTitle;
+            break;
+        case CHANGETHEME:
+            draft.theme = original(draft).theme==="basic" ? "dark" : "basic";
             break;
     }
 }, defaultState);

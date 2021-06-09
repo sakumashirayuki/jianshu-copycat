@@ -5,6 +5,7 @@ export const SELECTCATALOGITEM = "select_catalog_item";
 export const SELECTBLOGITEM = "select_blog_item";
 export const CHANGEBLOGCONTENT = "change_blog_content";
 export const CHANGEBLOGTITLE = "change_blog_title";
+export const CHANGETHEME = "change_theme";
 
 const loadWriteAction = (data) => {
     return {
@@ -52,3 +53,9 @@ export const changeTitleAction = (newTitle) => {
         newTitle
     };
 };
+
+export const changeThemeAction = () => {
+    return{
+        type: CHANGETHEME
+    }
+}

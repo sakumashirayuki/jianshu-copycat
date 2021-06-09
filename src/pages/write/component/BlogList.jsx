@@ -8,11 +8,22 @@ import { actions } from "../store";
 
 import {
     ListWrapper,
+    CreateTop,
     BlogItem,
     LeftIcon,
     RightIcon,
     CreateNew,
 } from "../style";
+
+const darkThemeBackground = {
+    main: "#3d3d3d",
+    line: "#2e2e2e",
+    fontColor: "#b3b3b3"
+};
+
+const darkThemeItem = {
+    main: "#2e2e2e"
+}
 
 function BlogList() {
     const writeState = useSelector((state) => state.writeReducer);
@@ -24,20 +35,11 @@ function BlogList() {
     }
 
     return (
-        <ListWrapper>
-            <div
-                style={{
-                    lineHeight: "20px",
-                    fontSize: "15px",
-                    padding: "20px 0 20px 25px",
-                    cursor: "pointer",
-                    color: "#595959",
-                }}
-                className="bottom-line"
-            >
+        <ListWrapper theme={writeState.theme==="dark"&&darkThemeBackground}>
+            <CreateTop className="bottom-line">
                 <IoAddCircle />
                 <span>新建文章</span>
-            </div>
+            </CreateTop>
             <ul>
                 {writeState.catalogList.length &&
                     writeState.catalogList[writeState.selectedCatId].list.map(
@@ -49,6 +51,7 @@ function BlogList() {
                                     "active"
                                 }`}
                                 onClick={() => handleOnClickBlogItem(index)}
+                                theme={writeState.theme==="dark"&&darkThemeItem}
                             >
                                 <LeftIcon>
                                     <AiFillFile />

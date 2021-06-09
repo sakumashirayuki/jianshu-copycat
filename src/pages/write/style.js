@@ -7,14 +7,20 @@ export const WriteWrapper = styled.div`
 `;
 
 export const CatalogWrapper = styled.div`
-    background-color: #404040;
-    color: #f2f2f2;
+    background-color: ${props => props.theme.main};
+    color: ${props => props.theme.fontColor};
     grid-column-start: 1;
     grid-column-end: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 `;
+CatalogWrapper.defaultProps = {
+    theme: {
+        main: "#404040",
+        fontColor: "#f2f2f2"
+    }
+}
 
 export const CatalogItem = styled.li`
     line-height: 40px;
@@ -23,19 +29,24 @@ export const CatalogItem = styled.li`
     cursor: pointer;
     position: relative;
     &.active{
-        background-color: #666;
+        background-color: ${props => props.theme.main};
         border-left: 3px solid #ec7259;
         .setting-icon{
             visibility: visible;
         }
     }
     &:hover{
-        background-color: #666;
+        background-color: ${props => props.theme.main};
     }
     .setting-icon{
         visibility: hidden;
     }
 `;
+CatalogItem.defaultProps = {
+    theme: {
+        main: "#666"
+    }
+}
 
 export const CatalogFooter = styled.footer`
     display: flex;
@@ -51,15 +62,30 @@ export const ListWrapper = styled.div`
     grid-column-start: 2;
     grid-column-end: 3;
     overflow-y: scroll;
+    background-color: ${props => props.theme.main};
+    color: ${props => props.theme.fontColor};
     .bottom-line{
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1px solid ${props => props.theme.line};
     }
 `;
+ListWrapper.defaultProps = {
+    theme: {
+        main: "#fff",
+        line: "#d9d9d9",
+        fontColor: "#595959"
+    }
+}
+
+export const CreateTop = styled.div`
+    line-height: 20px;
+    font-size: 15px;
+    padding: 20px 0 20px 25px;
+    cursor: pointer;
+`
 
 export const BlogItem = styled.li`
     position: relative;
     height: 90px;
-    color: #595959;
     padding: 15px 10px 15px 60px;
     cursor: pointer;
     span{
@@ -73,16 +99,21 @@ export const BlogItem = styled.li`
         visibility: hidden;
     }
     &:hover{
-        background-color: #e6e6e6;
+        background-color: ${props => props.theme.main};
     }
     &.active{
-        background-color: #e6e6e6;
+        background-color: ${props => props.theme.main};
         border-left: 5px solid #ec7259;
         .setting-icon{
             visibility: visible;
         }
     }
 `;
+BlogItem.defaultProps = {
+    theme: {
+        main: "#e6e6e6"
+    }
+}
 
 export const LeftIcon = styled.div`
     position: absolute;

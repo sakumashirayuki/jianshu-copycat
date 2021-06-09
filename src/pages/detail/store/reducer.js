@@ -58,7 +58,6 @@ const homeReducer = produce((draft, action) => {
             draft.showScroll = action.flag;
             break;
         case LIKE:
-            console.log(draft.likes);
             draft.likes = original(draft).likes + 1;
             draft.preference = "like";
             break;

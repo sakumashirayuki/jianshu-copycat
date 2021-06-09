@@ -13,9 +13,22 @@ import { Button } from "../../../common/header/style";
 
 import { actions } from "../store";
 
+const darkThemeBackground = {
+    main: "#2e2e2e",
+    fontColor: "#b3b3b3"
+};
+const darkThemeItem = {
+    main: "#262626",
+    line: "#2e2e2e"
+};
+
 function Catalog() {
     const writeState = useSelector((state) => state.writeReducer);
     const dispatch = useDispatch();
+
+    const handleChangeTheme = () => {
+        dispatch(actions.changeThemeAction());
+    }
 
     const menu = (
         <Menu>
@@ -26,9 +39,9 @@ function Catalog() {
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="/">
-                    设置显示模式
-                </a>
+                <div onClick={handleChangeTheme}>
+                    {writeState.theme==="dark" ? "关闭夜间模式" : "开启夜间模式"}
+                </div>
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item>
@@ -50,7 +63,7 @@ function Catalog() {
     };
 
     return (
-        <CatalogWrapper>
+        <CatalogWrapper theme={writeState.theme==="dark"&&darkThemeBackground}>
             <div>
                 <Link to="/">
                     <Button
@@ -77,6 +90,7 @@ function Catalog() {
                                 index === writeState.selectedCatId && "active"
                             }`}
                             onClick={() => handleOnClickCatItem(index)}
+                            theme={writeState.theme==="dark"&&darkThemeItem}
                         >
                             <div
                                 style={{ float: "right" }}
