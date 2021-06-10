@@ -6,7 +6,8 @@ import {
     SELECTBLOGITEM,
     CHANGEBLOGCONTENT,
     CHANGEBLOGTITLE,
-    CHANGETHEME
+    CHANGETHEME,
+    LOADTHEME
 } from "./action";
 
 const defaultState = {
@@ -34,7 +35,12 @@ const writeReducer = produce((draft, action) => {
             draft.catalogList[draft.selectedCatId].list[draft.selectedBlogId].title = action.newTitle;
             break;
         case CHANGETHEME:
-            draft.theme = original(draft).theme==="basic" ? "dark" : "basic";
+            const newTheme = original(draft).theme==="basic" ? "dark" : "basic"; 
+            draft.theme = newTheme;
+            localStorage.setItem('theme', newTheme);
+            break;
+        case LOADTHEME:
+            draft.theme = localStorage.getItem('theme');
             break;
     }
 }, defaultState);

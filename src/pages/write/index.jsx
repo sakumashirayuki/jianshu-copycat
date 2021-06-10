@@ -43,7 +43,13 @@ const darkThemeEditor = {
     headerBack: "#262626",
     border: "#262626",
     buttonColor: "#fff"
-}
+};
+
+const darkThemePlain = {
+    main: "#3d3d3d",
+    fontColor: "#595959",
+    shadow: "#666"
+};
 
 function Write() {
     // const [value, setValue] = useState("**Hello world!!!**\n\nwhat a beautiful day!");
@@ -66,6 +72,10 @@ function Write() {
     useEffect(() => {
         dispatch(actions.getWriteAction());
     }, []);
+
+    useEffect(() => {
+        dispatch(actions.loadThemeAction());
+    }, [])
 
     if (loginState.login) {
         return (
@@ -130,7 +140,7 @@ function Write() {
                             </EditorContainer>
                         </div>
                     ) : (
-                        <PlainEditor>
+                        <PlainEditor theme={writeState.theme==="dark" && darkThemePlain}>
                             <span>简书</span>
                         </PlainEditor>
                     )}

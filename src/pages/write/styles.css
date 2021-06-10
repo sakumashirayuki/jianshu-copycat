@@ -5,3 +5,15 @@ textarea{
 .mde-preview{
     height: calc(100vh - 113px);
 }
+.darkMenu{
+    background-color: #3d3d3d;
+}
+.darkA{
+    color: #b3b3b3;
+}
+.darkA:hover{
+    background-color:#2e2e2e;
+}
+.darkDivider{
+    background-color: #2e2e2e;
+}

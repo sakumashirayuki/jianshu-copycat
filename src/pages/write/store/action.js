@@ -6,6 +6,7 @@ export const SELECTBLOGITEM = "select_blog_item";
 export const CHANGEBLOGCONTENT = "change_blog_content";
 export const CHANGEBLOGTITLE = "change_blog_title";
 export const CHANGETHEME = "change_theme";
+export const LOADTHEME = "load_theme";
 
 const loadWriteAction = (data) => {
     return {
@@ -57,5 +58,11 @@ export const changeTitleAction = (newTitle) => {
 export const changeThemeAction = () => {
     return{
         type: CHANGETHEME
+    }
+}
+
+export const loadThemeAction = () => {
+    return{
+        type: LOADTHEME
     }
 }

@@ -13,6 +13,8 @@ import { Button } from "../../../common/header/style";
 
 import { actions } from "../store";
 
+// import darkStyle from "../dropdown.module.css";
+
 const darkThemeBackground = {
     main: "#2e2e2e",
     fontColor: "#b3b3b3"
@@ -28,31 +30,30 @@ function Catalog() {
     const handleChangeTheme = () => {
         dispatch(actions.changeThemeAction());
     }
-
     const menu = (
-        <Menu>
-            <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="/">
+        <Menu className={writeState.theme==="dark" && "darkMenu"}>
+            <Menu.Item className={writeState.theme==="dark" && "darkA"}>
+                <div>
                     简书作者实名认证
-                </a>
+                </div>
             </Menu.Item>
-            <Menu.Divider />
-            <Menu.Item>
+            <Menu.Divider className={writeState.theme==="dark" && "darkDivider"}/>
+            <Menu.Item className={writeState.theme==="dark" && "darkA"}>
                 <div onClick={handleChangeTheme}>
                     {writeState.theme==="dark" ? "关闭夜间模式" : "开启夜间模式"}
                 </div>
             </Menu.Item>
-            <Menu.Divider />
-            <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="/">
+            <Menu.Divider className={writeState.theme==="dark" && "darkDivider"}/>
+            <Menu.Item className={writeState.theme==="dark" && "darkA"}>
+                <div>
                     回收站
-                </a>
+                </div>
             </Menu.Item>
-            <Menu.Divider />
-            <Menu.Item>
-                <a target="_blank" rel="noopener noreferrer" href="/">
+            <Menu.Divider className={writeState.theme==="dark" && "darkDivider"}/>
+            <Menu.Item className={writeState.theme==="dark" && "darkA"}>
+                <div>
                     帮助与反馈
-                </a>
+                </div>
             </Menu.Item>
         </Menu>
     );

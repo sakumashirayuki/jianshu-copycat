@@ -196,14 +196,21 @@ EditorContainer.defaultProps={
 
 export const PlainEditor = styled.div`
     height: 100vh;
-    background-color: #f2f2f2;
+    background-color: ${props => props.theme.main};
     display: flex;
     justify-content: center;
     align-items: center;
     span{
         font-size: 64px;
-        color: #e6e6e6;
-        text-shadow: 0 1px 0 #fff;
+        color: ${props => props.theme.fontColor};
+        text-shadow: 0 1px 0 ${props => props.theme.shadow};
         vertical-align: middle;
     }
 `
+PlainEditor.defaultProps={
+    theme:{
+        main: "#f2f2f2",
+        fontColor: "#e6e6e6",
+        shadow: "#fff"
+    }
+}
