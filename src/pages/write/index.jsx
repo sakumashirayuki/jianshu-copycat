@@ -16,26 +16,6 @@ import "./styles.css";
 
 import { WriteWrapper, EditWrapper, EditTitle, EditorContainer, PlainEditor } from "./style";
 
-const saveCommand = {
-    name: "save-command",
-    icon: () => (
-        <span role="img" aria-label="save">
-            💾
-        </span>
-    ),
-    execute: (opts) => {
-        console.log("save blog!");
-    },
-};
-
-const publishCommand = {
-    name: "publish-command",
-    icon: () => <MdPublish />,
-    execute: (opts) => {
-        console.log("publish blog!");
-    },
-};
-
 const darkThemeEditor = {
     main: "#3d3d3d",
     fontColor: "#b3b3b3",
@@ -67,6 +47,26 @@ function Write() {
     const handleOnChangeTitle = (e) => {
         // debounce(()=>dispatch(actions.changeTitleAction(e.target.value)), 100);
         dispatch(actions.changeTitleAction(e.target.value));
+    };
+
+    const saveCommand = {
+        name: "save-command",
+        icon: () => (
+            <span role="img" aria-label="save">
+                💾
+            </span>
+        ),
+        execute: (opts) => {
+            console.log("save blog!");
+        },
+    };
+    
+    const publishCommand = {
+        name: "publish-command",
+        icon: () => <MdPublish className={writeState.theme==="dark" && "darkIcon"}/>,
+        execute: (opts) => {
+            console.log("publish blog!");
+        },
     };
 
     useEffect(() => {

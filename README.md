@@ -6,3 +6,5 @@
 ![image](https://github.com/sakumashirayuki/jianshu-copycat/blob/master/login.gif)
 ## 文章详情页效果
 ![image](https://github.com/sakumashirayuki/jianshu-copycat/blob/master/detail.gif)
+## 文章编辑页效果
+![image](https://github.com/sakumashirayuki/jianshu-copycat/blob/master/write.gif)
